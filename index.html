@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Deltora Labs</title>
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="./assets/favicon/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="./assets/favicon/favicon.svg" />
+        <link rel="shortcut icon" href="./assets/favicon/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-touch-icon.png" />
+        <link rel="manifest" href="./assets/favicon/site.webmanifest" />
+
+        <!-- Embed fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Reset CSS -->
+        <link rel="stylesheet" href="./assets/css/reset.css" />
+        <link rel="stylesheet" href="./assets/css/styles.css" />
+        
+        <!-- Smooth scroll CSS -->
+        <style>
+            html {
+                scroll-behavior: smooth;
+            }
+            
+            /* Offset for fixed header */
+            section[id] {
+                scroll-margin-top: 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Star field -->
+        <div class="star-field"></div>
+        
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <!-- Header Top -->
+                <div class="header-top">
+                    <div class="container">
+                        <div class="header-top__inner">
+                            <!-- logo -->
+                            <a href="#!">
+                                <div class="logo">
+                                    <img src="./assets/img/logo/logo_transparent.png" alt="Deltora Labs" class="logo__img" />
+                                    <span class="logo__text">
+                                        <span class="logo__brand">Deltora</span>
+                                        <span class="logo__brand logo__brand--small">
+                                            Labs
+                                        </span>
+                                    </span>
+                                </div>
+                            </a>
+
+                            <!-- Navbar -->
+                            <nav class="navbar">
+                                <ul class="navbar__list">
+                                    <li class="navbar__item">
+                                        <a
+                                            href="#home"
+                                            class="navbar__link "
+                                            >Home</a
+                                        >
+                                    </li>
+                                    <li class="navbar__item">
+                                        <a href="#about" class="navbar__link">About</a>
+                                    </li>
+                                    <li class="navbar__item">
+                                        <a href="#services" class="navbar__link">Services</a>
+                                    </li>
+                                    <li class="navbar__item">
+                                        <a href="#portfolio" class="navbar__link">Portfolio</a>
+                                    </li>
+                                    <li class="navbar__item">
+                                        <a href="#partner" class="navbar__link">Partner</a>
+                                    </li>
+                                    <li class="navbar__item">
+                                        <a href="#team" class="navbar__link">Our Team</a>
+                                    </li>
+                                    <li class="navbar__item">
+                                        <a href="#!" class="navbar__link">Pitchdesk</a>
+                                    </li>
+                                </ul>
+                            </nav>
+
+                            <!-- Action -->
+                            <div class="header-action">
+                                <button href="#!" class="btn header-action_contact">
+                                    Contact Us
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero -->
+                <section class="hero" id="home">
+                    <!-- Hero content -->
+                    <section class="hero__content">
+                        <h1 class="hero__heading">
+                            Deltora Labs blockchain strategy, brand reach.
+                        </h1>
+                        <p class="hero__desc">
+                            We provide comprehensive marketing solutions to help your blockchain project reach the right audience and break through in the global market.
+                        </p>
+                        <div class="hero__row">
+                            <a href="#about" class="btn">Learn More</a>
+                        </div>
+                    </section>
+
+                    <!-- Hero media -->
+                    <div class="hero__media">
+                        <figure class="hero__images">
+                            <img
+                                src="./assets/img/hero-01.jpg"
+                                alt=""
+                                class="hero__img"
+                            />
+                            <img
+                                src="./assets/img/hero-02.jpg"
+                                alt=""
+                                class="hero__img"
+                            />
+                        </figure>
+                    </div>
+                </section>
+            </div>
+        </header>
+            <!-- About -->
+            <section class="about" id="about">
+                <div class="container">
+                    <!-- About Title -->
+                    <h2 class="about__title section-heading">About Us</h2>
+                    
+                    <!-- About Description -->
+                    <div class="about__description">
+                        <p class="about__main-text">
+                            At <span class="about__highlight">DELTORA LABS</span>, we specialize in optimizing both <span class="about__highlight">on-chain & off-chain performance</span> to empower Web3 builders.
+                        </p>
+                        <p class="about__mission-text">
+                            Our mission is to bridge the gap between user engagement, community growth, and measurable success by delivering tailored solutions. 
+                        </p>
+                    </div>
+
+                    <!-- Logo and Title Section -->
+                    <div class="about__header">
+                        <div class="about__logo">
+                            <img src="./assets/img/logo/logo_transparent.png" alt="Deltora Labs" class="about__logo-img" />
+                        </div>
+                        <h2 class="about__heading">
+                            Why choose <span class="about__highlight">Deltora Labs</span>?
+                        </h2>
+                    </div>
+
+                    <!-- Stats Cards -->
+                    <div class="about__stats">
+                        <!-- Card 1 -->
+                        <div class="about__card">
+                            <div class="about__card-number">1M+</div>
+                            <div class="about__card-text">
+                                <span class="about__telegram">Telegram</span>, <span class="about__x">X</span><br>
+                                accounts and more
+                            </div>
+                            <div class="about__card-icons">
+                                <span class="icon telegram">📱</span>
+                                <span class="icon x">✖️</span>
+                                <span class="icon discord">👥</span>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="about__card">
+                            <div class="about__card-number">1M+</div>
+                            <div class="about__card-text">
+                                Wallets with<br>
+                                transaction history
+                            </div>
+                            <div class="about__card-icons">
+                                <span class="icon crypto">🪙</span>
+                                <span class="icon water">💧</span>
+                                <span class="icon lightning">⚡</span>
+                                <span class="icon chart">📊</span>
+                                <span class="icon diamond">💎</span>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="about__card">
+                            <div class="about__card-number">
+                                <span class="about__highlight">Auto-</span><br>
+                                <span class="about__white">mated</span>
+                            </div>
+                            <div class="about__card-text">
+                                Daily<br>
+                                interaction tools
+                            </div>
+                            <div class="about__card-icons">
+                                <span class="about__infinity-large">∞</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Results Content -->
+                    <div class="about__results">
+                        <div class="about__results-header">
+                            <h2 class="about__results-title">Boost all metrics of your Web3 project!</h2>
+                        </div>
+                        
+                        <div class="about__results-content">
+
+                            
+                            <!-- Stats Cards -->
+                            <div class="about__bottom-stats">
+                                <div class="about__stats-row about__stats-row--top">
+                                    <div class="about__stat-card">
+                                        <div class="about__card-number" data-target="200000">0</div>
+                                        <div class="about__card-label">Followers</div>
+                                    </div>
+                                    <div class="about__stat-card">
+                                        <div class="about__card-number" data-target="1000000">0</div>
+                                        <div class="about__card-label">Telegram Membership Boost</div>
+                                    </div>
+                                    <div class="about__stat-card">
+                                        <div class="about__card-number" data-target="50000">0</div>
+                                        <div class="about__card-label">Likes, Share</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="about__stats-row about__stats-row--bottom">
+                                    <div class="about__stat-card">
+                                        <div class="about__card-number" data-target="15000">0</div>
+                                        <div class="about__card-label">Messages</div>
+                                    </div>
+                                    <div class="about__stat-card">
+                                        <div class="about__card-number" data-target="150">0</div>
+                                        <div class="about__card-label">Token Launches Supported</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- service -->
+            <section class="service" id="services">
+                <div class="container">
+                    <h2 class="section-heading">Our Services</h2>
+                    <p class="section-desc service__desc">
+                        Comprehensive Web3 marketing solutions to accelerate your blockchain project's growth and community engagement.
+                    </p>
+
+                    <div class="service__list">
+                        <!-- service item 1 -->
+                        <section class="service-item">
+                            <img
+                                src="./assets/icons/search.svg"
+                                alt=""
+                                class="service-item__icon"
+                            />
+                            <h3 class="service-item__heading">Community Building</h3>
+                            <p class="service-item__desc">
+                                Build and manage active communities across Telegram, Discord, and X with real engaged users and authentic interactions.
+                            </p>
+                        </section>
+
+                        <!-- service item 2 -->
+                        <section class="service-item">
+                            <img
+                                src="./assets/icons/search-user.svg"
+                                alt=""
+                                class="service-item__icon"
+                            />
+                            <h3 class="service-item__heading">Token Marketing</h3>
+                            <p class="service-item__desc">
+                                Strategic launch campaigns, influencer partnerships, and automated engagement tools to maximize your token's visibility.
+                            </p>
+                        </section>
+
+                        <!-- service item 3 -->
+                        <section class="service-item">
+                            <img
+                                src="./assets/icons/bag.svg"
+                                alt=""
+                                class="service-item__icon"
+                            />
+                            <h3 class="service-item__heading">Analytics & Growth</h3>
+                            <p class="service-item__desc">
+                                Data-driven insights, performance tracking, and optimization strategies to scale your Web3 project efficiently.
+                            </p>
+                        </section>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <section class="portfolio" id="portfolio">
+                <div class="container">
+                    <h2 class="portfolio__heading section-heading">
+                        Portfolios
+                    </h2>
+                    <p class="portfolio__desc section-desc">
+                        Explore Deltota Labs diverse portfolio, highlighting strategic partnerships and transformative projects that reflect our dedication to innovation and growth.
+                    </p>
+                    <div class="portfolio__list">
+                        <!-- Portfolio Row 1 -->
+                        <div class="portfolio__row">
+                            <div class="portfolio-item">
+                                <a href="https://duckchain.io/" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo">
+                                        <img src="./assets/img/portfolio/duck-chain.jpg" alt="DuckChain" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="portfolio-item">
+                                <a href="https://oasisprotocol.org/" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo">
+                                        <img src="" alt="Oasis Protocol" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="portfolio-item">
+                                <a href="https://banana.dev/" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo portfolio-item__logo--banana">
+                                        <img src="" alt="Banana" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="portfolio-item">
+                                <a href="https://duckchain.io/" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo">
+                                        <img src="" alt="DuckChain" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="portfolio-item">
+                                <a href="https://oasisprotocol.org/" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo">
+                                        <img src="" alt="Oasis Protocol" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="portfolio-item">
+                                <a href="https://banana.dev/" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo portfolio-item__logo--banana">
+                                        <img src="" alt="Banana" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="portfolio-item">
+                                <a href="https://berachain.com/" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo">
+                                        <img src="" alt="Berachain" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="portfolio-item">
+                                <a href="https://kleros.io/" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo">
+                                        <img src="" alt="Kleros" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="portfolio-item">
+                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo portfolio-item__logo--meme">
+                                        <img src="" alt="Super Meme" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="portfolio-item">
+                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo portfolio-item__logo--meme">
+                                        <img src="" alt="Super Meme" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                            
+                        <!-- Portfolio Row 2 -->
+                        <div class="portfolio__row">
+                            <div class="portfolio-item">
+                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo">
+                                        <img src="" alt="1" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="portfolio-item">
+                                <a href="https://redstone.finance/" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo">
+                                        <img src="" alt="RedStone" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="portfolio-item">
+                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo">
+                                        <img src="" alt="Data Protocol" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="portfolio-item">
+                                <a href="https://minaprotocol.com/" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo">
+                                        <img src="" alt="Mina Protocol" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="portfolio-item">
+                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo">
+                                        <img src="" alt="Transmute" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="portfolio-item">
+                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo">
+                                        <img src="" alt="Golden Protocol" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="portfolio-item">
+                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo">
+                                        <img src="" alt="Kvants" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="portfolio-item">
+                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo">
+                                        <img src="" alt="Green Protocol" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="portfolio-item">
+                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo">
+                                        <img src="" alt="Kvants" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="portfolio-item">
+                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo">
+                                        <img src="" alt="Green Protocol" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Portfolio Row 3 -->
+                        <div class="portfolio__row">
+                            <div class="portfolio-item">
+                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo">
+                                        <img src="" alt="1" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="portfolio-item">
+                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo">
+                                        <img src="" alt="FOMO Protocol" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="portfolio-item">
+                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo">
+                                        <img src="" alt="Eleven Finance" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="portfolio-item">
+                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo">
+                                        <img src="" alt="ZK Bridge" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="portfolio-item">
+                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo">
+                                        <img src="" alt="FOMO Protocol" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="portfolio-item">
+                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo">
+                                        <img src="" alt="Eleven Finance" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="portfolio-item">
+                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo">
+                                        <img src="" alt="Pepe Protocol" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="portfolio-item">
+                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo">
+                                        <img src="" alt="GameSwap" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="portfolio-item">
+                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo">
+                                        <img src="" alt="Dots Protocol" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="portfolio-item">
+                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo">
+                                        <img src="" alt="Entropy Protocol" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Partner -->
+            <section class="partner" id="partner">
+                <div class="container">
+                    <h2 class="partner__heading section-heading">
+                        Our Strategic Partners
+                    </h2>
+                    <p class="partner__desc section-desc">
+                        We collaborate with industry-leading partners to deliver exceptional blockchain solutions and drive innovation across the Web3 ecosystem.
+                    </p>
+                    
+                    <div class="partner__grid">
+                        <div class="partner-card">
+                            <img src="./assets/img/partner/ChainGPT.png" alt="Partner 1" class="partner-card__logo">
+                        </div>
+                        <div class="partner-card">
+                            <img src="./assets/img/partner/ChainGPT.png" alt="Partner 2" class="partner-card__logo">
+                        </div>
+                        <div class="partner-card">
+                            <img src="./assets/img/partner/ChainGPT.png" alt="Partner 3" class="partner-card__logo">
+                        </div>
+                        <div class="partner-card">
+                            <img src="./assets/img/partner/ChainGPT.png" alt="Partner 4" class="partner-card__logo">
+                        </div>
+                        <div class="partner-card">
+                            <img src="./assets/img/partner/ChainGPT.png" alt="Partner 5" class="partner-card__logo">
+                        </div>
+                        <div class="partner-card">
+                            <img src="./assets/img/partner/ChainGPT.png" alt="Partner 6" class="partner-card__logo">
+                        </div>
+                        <div class="partner-card">
+                            <img src="./assets/img/partner/ChainGPT.png" alt="Partner 7" class="partner-card__logo">
+                        </div>
+                        <div class="partner-card">
+                            <img src="./assets/img/partner/ChainGPT.png" alt="Partner 8" class="partner-card__logo">
+                        </div>
+                        <div class="partner-card">
+                            <img src="./assets/img/partner/ChainGPT.png" alt="Partner 9" class="partner-card__logo">
+                        </div>
+                        <div class="partner-card">
+                            <img src="./assets/img/partner/ChainGPT.png" alt="Partner 10" class="partner-card__logo">
+                        </div>
+                        <div class="partner-card">
+                            <img src="./assets/img/partner/ChainGPT.png" alt="Partner 11" class="partner-card__logo">
+                        </div>
+                        <div class="partner-card">
+                            <img src="./assets/img/partner/ChainGPT.png" alt="Partner 12" class="partner-card__logo">
+                        </div>
+                        <div class="partner-card">
+                            <img src="./assets/img/partner/ChainGPT.png" alt="Partner 13" class="partner-card__logo">
+                        </div>
+                        <div class="partner-card">
+                            <img src="./assets/img/partner/ChainGPT.png" alt="Partner 14" class="partner-card__logo">
+                        </div>
+                        <div class="partner-card">
+                            <img src="./assets/img/partner/ChainGPT.png" alt="Partner 15" class="partner-card__logo">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Members -->
+            <section class="member" id="team">
+                <div class="container">
+                    <header class="member__header">
+                        <h2 class="section-heading">Our Team</h2>
+                    </header>
+
+                    <div class="member__list">
+                        <!-- member item 1 -->
+                        <article class="member-item">
+                            <div class="member-item__img-bg">
+                                <img
+                                    src="./assets/img/member/hasmed.png"
+                                    alt="Dr. Essence Page"
+                                    class="member-item__thumb"
+                                />
+                            </div>
+                            <h3 class="member-item__name">Brian Jahson</h3>
+                            <p class="member-item__title">
+                                DDS, California - Linda University
+                            </p>
+                        </article>
+
+                        <!-- member item 2 -->
+                        <article class="member-item">
+                            <div class="member-item__img-bg">
+                                <img
+                                    src="./assets/img/member/hasmed.png"
+                                    alt="Dr. Essence Page"
+                                    class="member-item__thumb"
+                                />
+                            </div>
+                            <h3 class="member-item__name">Lieum</h3>
+                            <p class="member-item__title">
+                                DDS, California - Linda University
+                            </p>
+                        </article>
+
+                        <!-- member item 3 -->
+                        <article class="member-item">
+                            <div class="member-item__img-bg">
+                                <img
+                                    src="./assets/img/member/hasmed.png"
+                                    alt="Dr. Essence Page"
+                                    class="member-item__thumb"
+                                />
+                            </div>
+                            <h3 class="member-item__name">Tan</h3>
+                            <p class="member-item__title">
+                                DDS, California - Linda University
+                            </p>
+                        </article>
+
+                        <!-- member item 4 -->
+                        <article class="member-item">
+                            <div class="member-item__img-bg">
+                                <img
+                                    src="./assets/img/member/hasmed.png"
+                                    alt="Dr. Essence Page"
+                                    class="member-item__thumb"
+                                />
+                            </div>
+                            <h3 class="member-item__name">Hasmed</h3>
+                            <p class="member-item__title">
+                                DDS, California - Linda University
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact -->
+            <section class="appointment" >
+                <div class="container">
+                    <div class="appointment__inner">
+                        <h2 class="appointment__heading section-heading">
+                            Ready to elevate your Web3 project?
+                        </h2>
+                        <p class="appointment__desc section-desc">
+                            Take your blockchain project to the next level with our comprehensive marketing solutions. Contact us today to discuss your growth strategy.
+                        </p>
+                        <a href="#!" class="btn">Get Started</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer__row">
+                    <!-- Company Info -->
+                    <div class="footer__column footer__column--brand">
+                        <a href="/">
+                            <div class="logo">
+                                <img src="./assets/img/logo/logo_transparent.png" alt="Deltora Labs" class="logo__img" />
+                                <span class="logo__text">
+                                    <span class="logo__brand">Deltora</span>
+                                    <span class="logo__brand logo__brand--small">Labs</span>
+                                </span>
+                            </div>
+                        </a>
+                        <p class="footer__desc">
+                            Empowering Web3 builders with comprehensive marketing solutions and community growth strategies. Bridge the gap between innovation and success.
+                        </p>
+                        <div class="footer__social">
+                            <a href="#!" class="footer__social-btn" title="Telegram">
+                                <svg width="16" height="14" viewBox="0 0 16 14" fill="none">
+                                    <path d="M16 1.83L13.33 11.5c-.2.8-.72 1-1.46.62L8.33 9.5 6.5 11.25c-.18.18-.33.33-.67.33l.23-3.33L14.67 2.5c.27-.23-.06-.36-.42-.13L4.33 8.17l-3.25-1c-.7-.22-.72-.7.15-1.04L14.83.17c.58-.22 1.08.14.9.88z" fill="currentColor"/>
+                                </svg>
+                            </a>
+                            <a href="#!" class="footer__social-btn" title="Twitter/X">
+                                <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
+                                    <path d="M16 1.42062C15.405 1.66154 14.771 1.82123 14.11 1.89877C14.79 1.524 15.309 0.935077 15.553 0.225231C14.919 0.574154 14.219 0.820615 13.473 0.958154C12.871 0.366462 12.013 0 11.077 0C9.261 0 7.799 1.36062 7.799 3.02862C7.799 3.26862 7.821 3.49938 7.875 3.71908C5.148 3.59631 2.735 2.38985 1.114 0.552C0.831 1.00523 0.665 1.524 0.665 2.08246C0.665 3.13108 1.25 4.06062 2.122 4.59877C1.595 4.58954 1.078 4.44831 0.64 4.22585C0.64 4.23508 0.64 4.24708 0.64 4.25908C0.64 5.73046 1.777 6.95262 3.268 7.23415C3.001 7.30154 2.71 7.33385 2.408 7.33385C2.198 7.33385 1.986 7.32277 1.787 7.28215C2.212 8.48123 3.418 9.36277 4.852 9.39138C3.736 10.1972 2.319 10.6828 0.785 10.6828C0.516 10.6828 0.258 10.6717 0 10.6412C1.453 11.5062 3.175 12 5.032 12C11.068 12 14.368 7.38462 14.368 3.384C14.368 3.25015 14.363 3.12092 14.356 2.99262C15.007 2.56615 15.554 2.03354 16 1.42062Z" fill="currentColor"/>
+                                </svg>
+                            </a>
+                            <a href="#!" class="footer__social-btn" title="Discord">
+                                <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
+                                    <path d="M13.55 1.25C12.5 0.8 11.37 0.46 10.18 0.25c-.05 0-.1.02-.13.06-.12.21-.25.49-.34.71-.93-.14-1.85-.14-2.78 0-.09-.22-.22-.5-.34-.71-.03-.04-.08-.06-.13-.06-1.19.21-2.32.55-3.37 1-.02 0-.03.02-.04.04C.38 4.83-.23 8.35.07 11.83c0 .03.02.05.04.07 1.31.96 2.58 1.54 3.82 1.93.04.01.08 0 .11-.03.24-.33.46-.67.65-1.03.02-.04 0-.09-.04-.11-.21-.08-.41-.17-.6-.27-.05-.03-.05-.1 0-.14.04-.03.08-.06.12-.09.02-.02.05-.02.08-.01 1.26.57 2.62.57 3.86 0 .03-.01.06-.01.08.01.04.03.08.06.12.09.05.04.05.11 0 .14-.19.1-.39.19-.6.27-.04.02-.06.07-.04.11.19.36.41.7.65 1.03.03.03.07.04.11.03 1.24-.39 2.51-.97 3.82-1.93.02-.02.04-.04.04-.07.35-4.03-.59-7.53-2.49-10.64-.01-.02-.02-.04-.04-.04zM5.34 9.67c-.83 0-1.51-.76-1.51-1.69s.67-1.69 1.51-1.69c.85 0 1.52.76 1.51 1.69 0 .93-.67 1.69-1.51 1.69zm5.32 0c-.83 0-1.51-.76-1.51-1.69s.67-1.69 1.51-1.69c.85 0 1.52.76 1.51 1.69 0 .93-.66 1.69-1.51 1.69z" fill="currentColor"/>
+                                </svg>
+                            </a>
+                            <a href="#!" class="footer__social-btn" title="LinkedIn">
+                                <svg width="13" height="12" viewBox="0 0 13 12" fill="none">
+                                    <path d="M0 1.39394C0 0.989891 0.146401 0.656558 0.439189 0.393939C0.731978 0.131309 1.11262 0 1.58108 0C2.04119 0 2.41344 0.129285 2.69788 0.387879C2.99066 0.654545 3.13707 1.00201 3.13707 1.4303C3.13707 1.81818 2.99486 2.14141 2.71042 2.4C2.41764 2.66667 2.03282 2.8 1.55598 2.8H1.54344C1.08333 2.8 0.711072 2.66667 0.426641 2.4C0.142209 2.13333 0 1.79798 0 1.39394ZM0.163127 12V3.90303H2.94884V12H0.163127ZM4.49228 12H7.27799V7.47879C7.27799 7.19595 7.31146 6.97777 7.37838 6.82424C7.49549 6.54949 7.67326 6.31716 7.91168 6.12727C8.1501 5.93737 8.44916 5.84242 8.80888 5.84242C9.74582 5.84242 10.2143 6.45252 10.2143 7.67273V12H13V7.35758C13 6.16161 12.7072 5.25455 12.1216 4.63636C11.536 4.01818 10.7622 3.70909 9.80019 3.70909C8.72104 3.70909 7.88031 4.15758 7.27799 5.05455V5.07879H7.26544L7.27799 5.05455V3.90303H4.49228C4.509 4.16161 4.51737 4.96565 4.51737 6.31515C4.51737 7.66464 4.509 9.55959 4.49228 12Z" fill="currentColor"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="footer__column">
+                        <h3 class="footer__heading">Quick Links</h3>
+                        <ul class="footer__list">
+                            <li class="footer__item">
+                                <a href="#!" class="footer__link">About Us</a>
+                            </li>
+                            <li class="footer__item">
+                                <a href="#!" class="footer__link">Our Services</a>
+                            </li>
+                            <li class="footer__item">
+                                <a href="#!" class="footer__link">Portfolio</a>
+                            </li>
+                            <li class="footer__item">
+                                <a href="#!" class="footer__link">Our Team</a>
+                            </li>
+                            <li class="footer__item">
+                                <a href="#!" class="footer__link">Partners</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Services -->
+                    <div class="footer__column">
+                        <h3 class="footer__heading">Services</h3>
+                        <ul class="footer__list">
+                            <li class="footer__item">
+                                <a href="#!" class="footer__link">Community Building</a>
+                            </li>
+                            <li class="footer__item">
+                                <a href="#!" class="footer__link">Token Marketing</a>
+                            </li>
+                            <li class="footer__item">
+                                <a href="#!" class="footer__link">Analytics & Growth</a>
+                            </li>
+                            <li class="footer__item">
+                                <a href="#!" class="footer__link">Strategic Partnerships</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact & Newsletter -->
+                    <div class="footer__column">
+                        <h3 class="footer__heading">Contact Info</h3>
+                        <div class="footer__contact">
+                            <div class="footer__contact-item">
+                                <span class="footer__contact-label">Email:</span>
+                                <a href="mailto:hello@deltoralabs.com" class="footer__contact-link">hello@deltoralabs.com</a>
+                            </div>
+                            <div class="footer__contact-item">
+                                <span class="footer__contact-label">Telegram:</span>
+                                <a href="#!" class="footer__contact-link">@DeltoraLabs</a>
+                            </div>
+                        </div>
+
+                        <h3 class="footer__heading footer__heading--newsletter">Newsletter</h3>
+                        <p class="footer__desc footer__desc--newsletter">
+                            Get Web3 marketing insights delivered to your inbox.
+                        </p>
+
+                        <form class="footer-form" action="">
+                            <input
+                                class="footer-form__input"
+                                type="email"
+                                name="email"
+                                id="email"
+                                placeholder="Enter your email..."
+                                required
+                            />
+                            <button class="btn footer-form__submit" type="submit">
+                                Subscribe
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="footer__copyright">
+                    <p class="footer__copyright-text">
+                        © 2025 Deltora Labs. All rights reserved. | Empowering Web3 innovation through strategic marketing.
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            // Tự động nhân đôi portfolio items cho animation mượt mà
+            document.querySelectorAll('.portfolio__row').forEach(row => {
+                row.innerHTML += row.innerHTML; // nhân đôi nội dung của row
+            });
+
+            // Counter animation function
+            function animateCounter(element, target, duration = 2500) {
+                let start = 0;
+                const startTime = Date.now();
+                
+                function updateCounter() {
+                    const elapsed = Date.now() - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    
+                    // Sử dụng easing function để tạo hiệu ứng mượt mà
+                    const easedProgress = 1 - Math.pow(1 - progress, 3);
+                    const current = Math.floor(start + (target - start) * easedProgress);
+                    
+                    // Format số với K và M
+                    if (target >= 1000000) {
+                        element.textContent = (current / 1000000).toFixed(1) + 'M+';
+                    } else if (target >= 1000) {
+                        element.textContent = (current / 1000).toFixed(0) + 'K+';
+                    } else {
+                        element.textContent = current + '+';
+                    }
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        // Final value formatting
+                        if (target >= 1000000) {
+                            element.textContent = (target / 1000000).toFixed(1) + 'M+';
+                        } else if (target >= 1000) {
+                            element.textContent = (target / 1000).toFixed(0) + 'K+';
+                        } else {
+                            element.textContent = target + '+';
+                        }
+                    }
+                }
+                
+                updateCounter();
+            }
+
+            // Reset counter to 0
+            function resetCounter(element) {
+                element.textContent = '0';
+            }
+
+            // Card rotation and counter animation observer
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.3
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const cards = entry.target.querySelectorAll('.about__stat-card');
+                    const numbers = entry.target.querySelectorAll('.about__card-number[data-target]');
+                    
+                    if (entry.isIntersecting) {
+                        // Restart card animations
+                        cards.forEach((card, index) => {
+                            card.style.animation = 'none';
+                            card.offsetHeight; // trigger reflow
+                            setTimeout(() => {
+                                card.style.animation = 'rotateFloat 8s ease-in-out infinite';
+                                card.style.animationDelay = `${index}s`;
+                            }, index * 200);
+                        });
+
+                        // Start counter animations
+                        numbers.forEach((number, index) => {
+                            const target = parseInt(number.getAttribute('data-target'));
+                            setTimeout(() => {
+                                animateCounter(number, target);
+                            }, index * 300);
+                        });
+                    } else {
+                        // Reset counters when out of view
+                        numbers.forEach(number => {
+                            resetCounter(number);
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            // Bắt đầu observe khi DOM đã load
+            document.addEventListener('DOMContentLoaded', () => {
+                const aboutSection = document.querySelector('.about__results');
+                if (aboutSection) {
+                    observer.observe(aboutSection);
+                }
+            });
+
+            // Partner slider removed - now using static grid layout
+        </script>
+    </body>
+</html>
