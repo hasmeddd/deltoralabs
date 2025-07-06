@@ -28,6 +28,8 @@
         <link rel="stylesheet" href="./assets/css/reset.css" />
         <link rel="stylesheet" href="./assets/css/styles.css" />
         
+        <!-- Pure JavaScript Solution - No external dependencies -->
+        
         <!-- Smooth scroll CSS -->
         <style>
             html {
@@ -37,6 +39,387 @@
             /* Offset for fixed header */
             section[id] {
                 scroll-margin-top: 100px;
+            }
+
+            /* Modal Styles */
+            .modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                animation: fadeIn 0.3s ease-out;
+            }
+
+            .modal.active {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .modal__overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                backdrop-filter: blur(5px);
+            }
+
+            .modal__content {
+                position: relative;
+                background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+                border-radius: 20px;
+                padding: 40px;
+                max-width: 500px;
+                width: 90%;
+                max-height: 90vh;
+                overflow-y: auto;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+                animation: slideIn 0.3s ease-out;
+            }
+
+            .modal__header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 30px;
+            }
+
+            .modal__title {
+                color: #fff;
+                font-size: 24px;
+                font-weight: 600;
+                margin: 0;
+                font-family: 'Sora', sans-serif;
+            }
+
+            .modal__close {
+                background: none;
+                border: none;
+                color: #fff;
+                font-size: 30px;
+                cursor: pointer;
+                padding: 0;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                transition: background 0.3s ease;
+            }
+
+            .modal__close:hover {
+                background: rgba(255, 255, 255, 0.1);
+            }
+
+            .modal__form {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                align-items: stretch;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+
+            .form__group {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .form__row {
+                display: flex;
+                gap: 15px;
+                width: 100%;
+            }
+
+            .form__group--half {
+                flex: 1;
+                min-width: 0; /* Allow flexbox to shrink properly */
+            }
+
+            .form__label {
+                color: rgba(255, 255, 255, 0.8);
+                font-size: 14px;
+                margin-bottom: 8px;
+                font-family: 'Open Sans', sans-serif;
+            }
+
+            .form__input,
+            .form__select,
+            .form__textarea {
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 12px;
+                padding: 15px 18px;
+                color: #fff;
+                font-size: 16px;
+                font-family: 'Open Sans', sans-serif;
+                transition: all 0.3s ease;
+                outline: none;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .form__input::placeholder,
+            .form__textarea::placeholder {
+                color: rgba(255, 255, 255, 0.5);
+            }
+
+            .form__input:focus,
+            .form__select:focus,
+            .form__textarea:focus {
+                border-color: #7c3aed;
+                box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+                background: rgba(255, 255, 255, 0.08);
+                outline: none;
+            }
+
+            .form__input:invalid:not(:focus):not(:placeholder-shown),
+            .form__select:invalid:not(:focus),
+            .form__textarea:invalid:not(:focus):not(:placeholder-shown) {
+                border-color: #ef4444;
+                box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+            }
+
+            .form__select {
+                cursor: pointer;
+            }
+
+            .form__select option {
+                background: #1a1a2e;
+                color: #fff;
+            }
+
+            .form__textarea {
+                resize: vertical;
+                min-height: 100px;
+            }
+
+            .form__submit {
+                margin: 10px auto 0;
+                background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+                border: none;
+                padding: 16px 32px;
+                border-radius: 12px;
+                color: #fff;
+                font-size: 16px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                font-family: 'Sora', sans-serif;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: fit-content;
+                min-width: 120px;
+                text-align: center;
+            }
+
+            .form__submit:hover:not(:disabled) {
+                background: linear-gradient(135deg, #6d28d9 0%, #9333ea 100%);
+                transform: translateY(-2px);
+                box-shadow: 0 10px 20px rgba(124, 58, 237, 0.3);
+            }
+
+            .form__submit:disabled {
+                opacity: 0.7;
+                cursor: not-allowed;
+                transform: none !important;
+                box-shadow: none !important;
+            }
+
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+
+            @keyframes slideIn {
+                from { 
+                    opacity: 0; 
+                    transform: translateY(-20px) scale(0.95); 
+                }
+                to { 
+                    opacity: 1; 
+                    transform: translateY(0) scale(1); 
+                }
+            }
+
+            @media (max-width: 768px) {
+                .modal__content {
+                    padding: 25px;
+                    margin: 20px;
+                }
+
+                .modal__title {
+                    font-size: 20px;
+                }
+
+                .form__row {
+                    flex-direction: column;
+                    gap: 20px;
+                }
+
+                .form__group--half {
+                    width: 100%;
+                }
+            }
+
+            /* Custom Alert Styles */
+            .custom-alert {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 10000;
+                animation: alertFadeIn 0.3s ease-out;
+            }
+
+            .custom-alert.active {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .custom-alert__overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.7);
+                backdrop-filter: blur(8px);
+            }
+
+            .custom-alert__content {
+                position: relative;
+                background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+                border-radius: 16px;
+                padding: 30px;
+                max-width: 450px;
+                width: 90%;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+                animation: alertSlideIn 0.3s ease-out;
+                text-align: center;
+            }
+
+            .custom-alert__icon {
+                font-size: 48px;
+                margin-bottom: 20px;
+                display: block;
+            }
+
+            .custom-alert__icon--success {
+                color: #10b981;
+            }
+
+            .custom-alert__icon--error {
+                color: #ef4444;
+            }
+
+            .custom-alert__icon--warning {
+                color: #f59e0b;
+            }
+
+            .custom-alert__title {
+                color: #fff;
+                font-size: 24px;
+                font-weight: 600;
+                margin: 0 0 15px 0;
+                font-family: 'Sora', sans-serif;
+            }
+
+            .custom-alert__message {
+                color: rgba(255, 255, 255, 0.9);
+                font-size: 16px;
+                line-height: 1.5;
+                margin: 0 0 25px 0;
+                font-family: 'Open Sans', sans-serif;
+                white-space: pre-line;
+            }
+
+            .custom-alert__button {
+                background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+                border: none;
+                padding: 12px 30px;
+                border-radius: 12px;
+                color: #fff;
+                font-size: 16px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                font-family: 'Sora', sans-serif;
+                min-width: 100px;
+            }
+
+            .custom-alert__button:hover {
+                background: linear-gradient(135deg, #6d28d9 0%, #9333ea 100%);
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
+            }
+
+            .custom-alert__button--success {
+                background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            }
+
+            .custom-alert__button--success:hover {
+                background: linear-gradient(135deg, #059669 0%, #047857 100%);
+                box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+            }
+
+            .custom-alert__button--error {
+                background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            }
+
+            .custom-alert__button--error:hover {
+                background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+                box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
+            }
+
+            @keyframes alertFadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+
+            @keyframes alertSlideIn {
+                from { 
+                    opacity: 0; 
+                    transform: translateY(-30px) scale(0.9); 
+                }
+                to { 
+                    opacity: 1; 
+                    transform: translateY(0) scale(1); 
+                }
+            }
+
+            @media (max-width: 768px) {
+                .custom-alert__content {
+                    padding: 25px 20px;
+                    margin: 20px;
+                }
+
+                .custom-alert__title {
+                    font-size: 20px;
+                }
+
+                .custom-alert__message {
+                    font-size: 14px;
+                }
+
+                .custom-alert__icon {
+                    font-size: 40px;
+                }
             }
         </style>
     </head>
@@ -90,14 +473,14 @@
                                         <a href="#team" class="navbar__link">Our Team</a>
                                     </li>
                                     <li class="navbar__item">
-                                        <a href="#!" class="navbar__link">Pitchdesk</a>
+                                        <a href="./assets/pitchdesk/PitchDesk Molecule Labs .pdf" target="_blank" rel="noopener" class="navbar__link">Pitchdesk</a>
                                     </li>
                                 </ul>
                             </nav>
 
                             <!-- Action -->
                             <div class="header-action">
-                                <button href="#!" class="btn header-action_contact">
+                                <button class="btn header-action_contact" id="openModalHeader">
                                     Contact Us
                                 </button>
                             </div>
@@ -110,7 +493,7 @@
                     <!-- Hero content -->
                     <section class="hero__content">
                         <h1 class="hero__heading">
-                            Deltora Labs blockchain strategy, brand reach.
+                            <span class="about__highlight">Deltora Labs</span> blockchain strategy, brand reach.
                         </h1>
                         <p class="hero__desc">
                             We provide comprehensive marketing solutions to help your blockchain project reach the right audience and break through in the global market.
@@ -147,10 +530,10 @@
                     <!-- About Description -->
                     <div class="about__description">
                         <p class="about__main-text">
-                            At <span class="about__highlight">DELTORA LABS</span>, we specialize in optimizing both <span class="about__highlight">on-chain & off-chain performance</span> to empower Web3 builders.
+                            <span class="about__highlight">Deltora Labs</span> is a subsidiary of Deltora Foundation, an organization that <span class="about__highlight">invests in pre-launch blockchain projects</span> with thousands of members. <span class="about__highlight">Deltora Labs</span> launched in <span class="about__highlight">Q1 2024</span>, quickly building <span class="about__highlight">a strong global presence</span>, with strategic relationships in key blockchain markets, especially in <span class="about__highlight">Turkey, China, Korea and Vietnam.</span>
                         </p>
                         <p class="about__mission-text">
-                            Our mission is to bridge the gap between user engagement, community growth, and measurable success by delivering tailored solutions. 
+                            These connections help us provide our clients with <span class="about__highlight">easy access to fast-growing regions</span>, allowing them to <span class="about__highlight">expand first in targeted local markets or scale globally</span>, depending on their goals. We always put <span class="about__highlight">the interests and growth of our partners first.</span>
                         </p>
                     </div>
 
@@ -168,11 +551,10 @@
                     <div class="about__stats">
                         <!-- Card 1 -->
                         <div class="about__card">
-                            <div class="about__card-number">1M+</div>
+                            <div class="about__card-number">2M$+</div>
                             <div class="about__card-text">
-                                <span class="about__telegram">Telegram</span>, <span class="about__x">X</span><br>
-                                accounts and more
-                            </div>
+                                <span class="about__telegram">Invested in total</span>, <span class="about__x">more than 1000 investors </span><br>
+                            </div> 
                             <div class="about__card-icons">
                                 <span class="icon telegram">📱</span>
                                 <span class="icon x">✖️</span>
@@ -182,10 +564,10 @@
 
                         <!-- Card 2 -->
                         <div class="about__card">
-                            <div class="about__card-number">1M+</div>
+                            <div class="about__card-number">700+</div>
                             <div class="about__card-text">
-                                Wallets with<br>
-                                transaction history
+                                KOLs Global<br>
+                                <span class="about__x">200K+ interactions</span>
                             </div>
                             <div class="about__card-icons">
                                 <span class="icon crypto">🪙</span>
@@ -199,12 +581,12 @@
                         <!-- Card 3 -->
                         <div class="about__card">
                             <div class="about__card-number">
-                                <span class="about__highlight">Auto-</span><br>
-                                <span class="about__white">mated</span>
+                                <span class="about__highlight">Experience</span><br>
+                                <span class="about__white">5+ years</span>
                             </div>
                             <div class="about__card-text">
-                                Daily<br>
-                                interaction tools
+                                Advisor<br>
+                                for Web3 projects
                             </div>
                             <div class="about__card-icons">
                                 <span class="about__infinity-large">∞</span>
@@ -271,9 +653,13 @@
                                 class="service-item__icon"
                             />
                             <h3 class="service-item__heading">Community Building</h3>
-                            <p class="service-item__desc">
-                                Build and manage active communities across Telegram, Discord, and X with real engaged users and authentic interactions.
-                            </p>
+                            <ul class="service-item__list">
+                                <li class="service-item__desc">Telegram, Discord, and X with real engaged users and authentic interactions</li>
+                                <li class="service-item__desc">Local: VietNam, Turkey, China, Korea, CIS, India</li>
+                                <li class="service-item__desc">Army engagement: Seeding, Shilling</li>
+                            </ul>
+                                
+                            
                         </section>
 
                         <!-- service item 2 -->
@@ -283,10 +669,11 @@
                                 alt=""
                                 class="service-item__icon"
                             />
-                            <h3 class="service-item__heading">Token Marketing</h3>
-                            <p class="service-item__desc">
-                                Strategic launch campaigns, influencer partnerships, and automated engagement tools to maximize your token's visibility.
-                            </p>
+                            <h3 class="service-item__heading">KOLs Engagement</h3>
+                            <ul class="service-item__list">
+                                <li class="service-item__desc">700+ KOLs Local: Twitter, Youtube, TikTok, LinkedIn</li>
+                                <li class="service-item__desc">Building Ambassador royal campaign</li>
+                            </ul>
                         </section>
 
                         <!-- service item 3 -->
@@ -296,10 +683,48 @@
                                 alt=""
                                 class="service-item__icon"
                             />
-                            <h3 class="service-item__heading">Analytics & Growth</h3>
-                            <p class="service-item__desc">
-                                Data-driven insights, performance tracking, and optimization strategies to scale your Web3 project efficiently.
-                            </p>
+                            <h3 class="service-item__heading">IDO LaunchPad</h3>
+                            <ul class="service-item__list">
+                                <li class="service-item__desc">CoinTerminal</li>
+                                <li class="service-item__desc">ChainGPT</li>
+                                <li class="service-item__desc">AI Tech</li>
+                                <li class="service-item__desc">Eesee</li>
+                                <li class="service-item__desc">Seedify</li>
+                                <li class="service-item__desc">Poolz</li>
+                                <li class="service-item__desc">AgentLauncher</li>
+                            </ul>
+                        </section>
+
+                        <!-- service item 4 -->
+                        <section class="service-item">
+                            <img
+                                src="./assets/icons/search.svg"
+                                alt=""
+                                class="service-item__icon"
+                            />
+                            <h3 class="service-item__heading">CEX Listing</h3>
+                            <ul class="service-item__list">
+                                <li class="service-item__desc">MEXC</li>
+                                <li class="service-item__desc">Gate.io</li>
+                                <li class="service-item__desc">Bybit</li>
+                                <li class="service-item__desc">Kucoin</li>
+                                <li class="service-item__desc">OKX</li>
+                                <li class="service-item__desc">BingX</li>
+                            </ul>
+                        </section>
+
+                        <!-- service item 5 -->
+                        <section class="service-item">
+                            <img
+                                src="./assets/icons/bag.svg"
+                                alt=""
+                                class="service-item__icon"
+                            />
+                            <h3 class="service-item__heading">Fund Raising</h3>
+                            <ul class="service-item__list">
+                                <li class="service-item__desc">Connect with investors, build a strong network, and raise funds for your project</li>
+                                <li class="service-item__desc">All rounds: Seed, Pre-Seed, KOLs, Private, Public</li>
+                            </ul>
                         </section>
                     </div>
                 </div>
@@ -326,65 +751,65 @@
                                 </a>
                             </div>
                             <div class="portfolio-item">
-                                <a href="https://oasisprotocol.org/" target="_blank" class="portfolio-item__link">
+                                <a href="https://buildonhybrid.com/" target="_blank" class="portfolio-item__link">
                                     <div class="portfolio-item__logo">
-                                        <img src="" alt="Oasis Protocol" class="portfolio-item__img">
+                                        <img src="./assets/img/portfolio/hybrid.jpg" alt="Hybrid" class="portfolio-item__img">
                                     </div>
                                 </a>
                             </div>
                             <div class="portfolio-item">
-                                <a href="https://banana.dev/" target="_blank" class="portfolio-item__link">
-                                    <div class="portfolio-item__logo portfolio-item__logo--banana">
-                                        <img src="" alt="Banana" class="portfolio-item__img">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="portfolio-item">
-                                <a href="https://duckchain.io/" target="_blank" class="portfolio-item__link">
+                                <a href="https://www.metaxseed.io/" target="_blank" class="portfolio-item__link">
                                     <div class="portfolio-item__logo">
-                                        <img src="" alt="DuckChain" class="portfolio-item__img">
+                                        <img src="./assets/img/portfolio/MetaXSeed.jpg" alt="MetaXSeed" class="portfolio-item__img">
                                     </div>
                                 </a>
                             </div>
                             <div class="portfolio-item">
-                                <a href="https://oasisprotocol.org/" target="_blank" class="portfolio-item__link">
+                                <a href="https://max.earnm.com/" target="_blank" class="portfolio-item__link">
                                     <div class="portfolio-item__logo">
-                                        <img src="" alt="Oasis Protocol" class="portfolio-item__img">
+                                        <img src="./assets/img/portfolio/earn-m.jpg" alt="EARN M" class="portfolio-item__img">
                                     </div>
                                 </a>
                             </div>
                             <div class="portfolio-item">
-                                <a href="https://banana.dev/" target="_blank" class="portfolio-item__link">
-                                    <div class="portfolio-item__logo portfolio-item__logo--banana">
-                                        <img src="" alt="Banana" class="portfolio-item__img">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="portfolio-item">
-                                <a href="https://berachain.com/" target="_blank" class="portfolio-item__link">
+                                <a href="https://www.raiin.network/" target="_blank" class="portfolio-item__link">
                                     <div class="portfolio-item__logo">
-                                        <img src="" alt="Berachain" class="portfolio-item__img">
+                                        <img src="./assets/img/portfolio/RaiinMaker.jpg" alt="RaiinMaker" class="portfolio-item__img">
                                     </div>
                                 </a>
                             </div>
                             <div class="portfolio-item">
-                                <a href="https://kleros.io/" target="_blank" class="portfolio-item__link">
+                                <a href="https://www.yuliverse.com/" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo ">
+                                        <img src="./assets/img/portfolio/Yuliverse.jpg" alt="Yuliverse" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="portfolio-item">
+                                <a href="https://www.kvants.ai/" target="_blank" class="portfolio-item__link">
                                     <div class="portfolio-item__logo">
-                                        <img src="" alt="Kleros" class="portfolio-item__img">
+                                        <img src="./assets/img/portfolio/KvantsAI.jpg" alt="KvantsAI" class="portfolio-item__img">
                                     </div>
                                 </a>
                             </div>
                             <div class="portfolio-item">
-                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                <a href="https://app.wisdomise.com/" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo">
+                                        <img src="./assets/img/portfolio/Wisdomise.jpg" alt="Wisdomise" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="portfolio-item">
+                                <a href="https://www.bitsmiley.io/" target="_blank" class="portfolio-item__link">
+                                    <div class="portfolio-item__logo">
+                                        <img src="./assets/img/portfolio/Bitsmiley.jpg" alt="Bitsmiley" class="portfolio-item__img">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="portfolio-item">
+                                <a href="https://rivalz.ai/" target="_blank" class="portfolio-item__link">
                                     <div class="portfolio-item__logo portfolio-item__logo--meme">
-                                        <img src="" alt="Super Meme" class="portfolio-item__img">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="portfolio-item">
-                                <a href="#!" target="_blank" class="portfolio-item__link">
-                                    <div class="portfolio-item__logo portfolio-item__logo--meme">
-                                        <img src="" alt="Super Meme" class="portfolio-item__img">
+                                        <img src="./assets/img/portfolio/Rivalz Network.jpg" alt="Rivalz Network" class="portfolio-item__img">
                                     </div>
                                 </a>
                             </div>
@@ -393,72 +818,72 @@
                         <!-- Portfolio Row 2 -->
                         <div class="portfolio__row">
                             <div class="portfolio-item">
-                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                <a href="https://fuel.network/" target="_blank" class="portfolio-item__link">
                                     <div class="portfolio-item__logo">
-                                        <img src="" alt="1" class="portfolio-item__img">
+                                        <img src="./assets/img/portfolio/Fuel.jpg" alt="Fuel" class="portfolio-item__img">
                                     </div>
                                 </a>
                             </div>
                             <div class="portfolio-item">
-                                <a href="https://redstone.finance/" target="_blank" class="portfolio-item__link">
+                                <a href="https://ponder.one/" target="_blank" class="portfolio-item__link">
                                     <div class="portfolio-item__logo">
-                                        <img src="" alt="RedStone" class="portfolio-item__img">
+                                        <img src="./assets/img/portfolio/Ponder.jpg" alt="Ponder" class="portfolio-item__img">
                                     </div>
                                 </a>
                             </div>
                             <div class="portfolio-item">
-                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                <a href="https://tilted.xyz/" target="_blank" class="portfolio-item__link">
                                     <div class="portfolio-item__logo">
-                                        <img src="" alt="Data Protocol" class="portfolio-item__img">
+                                        <img src="./assets/img/portfolio/Tilted.jpg" alt="Tilted" class="portfolio-item__img">
                                     </div>
                                 </a>
                             </div>
                             <div class="portfolio-item">
-                                <a href="https://minaprotocol.com/" target="_blank" class="portfolio-item__link">
+                                <a href="https://www.ether.fi/" target="_blank" class="portfolio-item__link">
                                     <div class="portfolio-item__logo">
-                                        <img src="" alt="Mina Protocol" class="portfolio-item__img">
+                                        <img src="./assets/img/portfolio/EtherFi.jpg" alt="EtherFi" class="portfolio-item__img">
                                     </div>
                                 </a>
                             </div>
                             <div class="portfolio-item">
-                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                <a href="https://saharaai.com/" target="_blank" class="portfolio-item__link">
                                     <div class="portfolio-item__logo">
-                                        <img src="" alt="Transmute" class="portfolio-item__img">
+                                        <img src="./assets/img/portfolio/Sahara AI.jpg" alt="Sahara AI" class="portfolio-item__img">
                                     </div>
                                 </a>
                             </div>
                             <div class="portfolio-item">
-                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                <a href="https://www.chaingpt.org/" target="_blank" class="portfolio-item__link">
                                     <div class="portfolio-item__logo">
-                                        <img src="" alt="Golden Protocol" class="portfolio-item__img">
+                                        <img src="./assets/img/portfolio/ChainGPT.jpg" alt="ChainGPT" class="portfolio-item__img">
                                     </div>
                                 </a>
                             </div>
                             <div class="portfolio-item">
-                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                <a href="https://www.btcterminal.io/" target="_blank" class="portfolio-item__link">
                                     <div class="portfolio-item__logo">
-                                        <img src="" alt="Kvants" class="portfolio-item__img">
+                                        <img src="./assets/img/portfolio/BTCTerminal.jpg" alt="BTC Terminal" class="portfolio-item__img">
                                     </div>
                                 </a>
                             </div>
                             <div class="portfolio-item">
-                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                <a href="https://minterest.com/" target="_blank" class="portfolio-item__link">
                                     <div class="portfolio-item__logo">
-                                        <img src="" alt="Green Protocol" class="portfolio-item__img">
+                                        <img src="./assets/img/portfolio/Minterest.jpg" alt="Minterest" class="portfolio-item__img">
                                     </div>
                                 </a>
                             </div>
                             <div class="portfolio-item">
-                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                <a href="https://www.cointerminal.com/" target="_blank" class="portfolio-item__link">
                                     <div class="portfolio-item__logo">
-                                        <img src="" alt="Kvants" class="portfolio-item__img">
+                                        <img src="./assets/img/portfolio/CoinTerminal.jpg" alt="CoinTerminal" class="portfolio-item__img">
                                     </div>
                                 </a>
                             </div>
                             <div class="portfolio-item">
-                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                <a href="https://app.mmt.finance/" target="_blank" class="portfolio-item__link">
                                     <div class="portfolio-item__logo">
-                                        <img src="" alt="Green Protocol" class="portfolio-item__img">
+                                        <img src="./assets/img/portfolio/Momentum.jpg" alt="Momentum" class="portfolio-item__img">
                                     </div>
                                 </a>
                             </div>
@@ -466,76 +891,75 @@
                         <!-- Portfolio Row 3 -->
                         <div class="portfolio__row">
                             <div class="portfolio-item">
-                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                <a href="https://www.kip.pro/" target="_blank" class="portfolio-item__link">
                                     <div class="portfolio-item__logo">
-                                        <img src="" alt="1" class="portfolio-item__img">
+                                        <img src="./assets/img/portfolio/KIP Protocol.jpg" alt="KIP Protocol" class="portfolio-item__img">
                                     </div>
                                 </a>
                             </div>
                             <div class="portfolio-item">
-                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                <a href="https://omniatech.io/" target="_blank" class="portfolio-item__link">
                                     <div class="portfolio-item__logo">
-                                        <img src="" alt="FOMO Protocol" class="portfolio-item__img">
+                                        <img src="./assets/img/portfolio/Omnia Protocol.jpg" alt="Omnia Protocol" class="portfolio-item__img">
                                     </div>
                                 </a>
                             </div>
                             <div class="portfolio-item">
-                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                <a href="https://nibiru.fi/" target="_blank" class="portfolio-item__link">
                                     <div class="portfolio-item__logo">
-                                        <img src="" alt="Eleven Finance" class="portfolio-item__img">
+                                        <img src="./assets/img/portfolio/Nibiru.jpg" alt="Nibiru" class="portfolio-item__img">
                                     </div>
                                 </a>
                             </div>
                             <div class="portfolio-item">
-                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                <a href="https://dao.cookie.fun/" target="_blank" class="portfolio-item__link">
                                     <div class="portfolio-item__logo">
-                                        <img src="" alt="ZK Bridge" class="portfolio-item__img">
+                                        <img src="./assets/img/portfolio/Cookie3.png" alt="Cookie3 Dao" class="portfolio-item__img">
                                     </div>
                                 </a>
                             </div>
                             <div class="portfolio-item">
-                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                <a href="https://www.bitlayer.org/" target="_blank" class="portfolio-item__link">
                                     <div class="portfolio-item__logo">
-                                        <img src="" alt="FOMO Protocol" class="portfolio-item__img">
+                                        <img src="./assets/img/portfolio/Bitlayer.jpg" alt="Bitlayer" class="portfolio-item__img">
                                     </div>
                                 </a>
                             </div>
                             <div class="portfolio-item">
-                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                <a href="https://shieldeum.net/" target="_blank" class="portfolio-item__link">
                                     <div class="portfolio-item__logo">
-                                        <img src="" alt="Eleven Finance" class="portfolio-item__img">
+                                        <img src="./assets/img/portfolio/Shieldeum.jpg" alt="Shieldeum" class="portfolio-item__img">
                                     </div>
                                 </a>
                             </div>
                             <div class="portfolio-item">
-                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                <a href="https://www.depined.org/" target="_blank" class="portfolio-item__link">
                                     <div class="portfolio-item__logo">
-                                        <img src="" alt="Pepe Protocol" class="portfolio-item__img">
+                                        <img src="./assets/img/portfolio/Depined.jpg" alt="Depined" class="portfolio-item__img">
                                     </div>
                                 </a>
                             </div>
                             <div class="portfolio-item">
-                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                <a href="https://www.whitebridge.network/" target="_blank" class="portfolio-item__link">
                                     <div class="portfolio-item__logo">
-                                        <img src="" alt="GameSwap" class="portfolio-item__img">
+                                        <img src="./assets/img/portfolio/Whitebridge.jpg" alt="Whitebridge" class="portfolio-item__img">
                                     </div>
                                 </a>
                             </div>
                             <div class="portfolio-item">
-                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                <a href="https://datai.network/" target="_blank" class="portfolio-item__link">
                                     <div class="portfolio-item__logo">
-                                        <img src="" alt="Dots Protocol" class="portfolio-item__img">
+                                        <img src="./assets/img/portfolio/Datai Network.jpg" alt="Datai Network" class="portfolio-item__img">
                                     </div>
                                 </a>
                             </div>
                             <div class="portfolio-item">
-                                <a href="#!" target="_blank" class="portfolio-item__link">
+                                <a href="https://folks.finance/" target="_blank" class="portfolio-item__link">
                                     <div class="portfolio-item__logo">
-                                        <img src="" alt="Entropy Protocol" class="portfolio-item__img">
+                                        <img src="./assets/img/portfolio/Folks Finance.jpg" alt="Folks Finance" class="portfolio-item__img">
                                     </div>
                                 </a>
                             </div>
-                            
                         </div>
                     </div>
                 </div>
@@ -553,49 +977,44 @@
                     
                     <div class="partner__grid">
                         <div class="partner-card">
-                            <img src="./assets/img/partner/ChainGPT.png" alt="Partner 1" class="partner-card__logo">
+                            <img src="./assets/img/partner/ChainGPTLabs.png" alt="ChainGPT Labs" class="partner-card__logo">
+                            <h3 class="partner-card__name">ChainGPT Labs</h3>
                         </div>
                         <div class="partner-card">
-                            <img src="./assets/img/partner/ChainGPT.png" alt="Partner 2" class="partner-card__logo">
+                            <img src="./assets/img/partner/sui.png" alt="Sui Foundation" class="partner-card__logo">
+                            <h3 class="partner-card__name">Sui Foundation</h3>
                         </div>
                         <div class="partner-card">
-                            <img src="./assets/img/partner/ChainGPT.png" alt="Partner 3" class="partner-card__logo">
+                            <img src="./assets/img/partner/IBC Group.png" alt="IBC Group" class="partner-card__logo">
+                            <h3 class="partner-card__name">IBC Group</h3>
                         </div>
                         <div class="partner-card">
-                            <img src="./assets/img/partner/ChainGPT.png" alt="Partner 4" class="partner-card__logo">
+                            <img src="./assets/img/partner/OKX Ventures.jpg" alt="OKX Ventures" class="partner-card__logo">
+                            <h3 class="partner-card__name">OKX Ventures</h3>
                         </div>
                         <div class="partner-card">
-                            <img src="./assets/img/partner/ChainGPT.png" alt="Partner 5" class="partner-card__logo">
+                            <img src="./assets/img/partner/Solana.png" alt="Solana" class="partner-card__logo">
+                            <h3 class="partner-card__name">Solana</h3>
                         </div>
                         <div class="partner-card">
-                            <img src="./assets/img/partner/ChainGPT.png" alt="Partner 6" class="partner-card__logo">
+                            <img src="./assets/img/partner/CMC Labs.png" alt="CMC Labs" class="partner-card__logo">
+                            <h3 class="partner-card__name">CMC Labs</h3>
                         </div>
                         <div class="partner-card">
-                            <img src="./assets/img/partner/ChainGPT.png" alt="Partner 7" class="partner-card__logo">
+                            <img src="./assets/img/partner/Kyros Ventures.png" alt="Kyros Ventures" class="partner-card__logo">
+                            <h3 class="partner-card__name">Kyros Ventures</h3>
                         </div>
                         <div class="partner-card">
-                            <img src="./assets/img/partner/ChainGPT.png" alt="Partner 8" class="partner-card__logo">
+                            <img src="./assets/img/partner/JAR Agency.png" alt="JAR Agency" class="partner-card__logo">
+                            <h3 class="partner-card__name">JAR Agency</h3>
                         </div>
                         <div class="partner-card">
-                            <img src="./assets/img/partner/ChainGPT.png" alt="Partner 9" class="partner-card__logo">
+                            <img src="./assets/img/partner/Titans Ventures.png" alt="Titans Ventures" class="partner-card__logo">
+                            <h3 class="partner-card__name">Titans Ventures</h3>
                         </div>
                         <div class="partner-card">
-                            <img src="./assets/img/partner/ChainGPT.png" alt="Partner 10" class="partner-card__logo">
-                        </div>
-                        <div class="partner-card">
-                            <img src="./assets/img/partner/ChainGPT.png" alt="Partner 11" class="partner-card__logo">
-                        </div>
-                        <div class="partner-card">
-                            <img src="./assets/img/partner/ChainGPT.png" alt="Partner 12" class="partner-card__logo">
-                        </div>
-                        <div class="partner-card">
-                            <img src="./assets/img/partner/ChainGPT.png" alt="Partner 13" class="partner-card__logo">
-                        </div>
-                        <div class="partner-card">
-                            <img src="./assets/img/partner/ChainGPT.png" alt="Partner 14" class="partner-card__logo">
-                        </div>
-                        <div class="partner-card">
-                            <img src="./assets/img/partner/ChainGPT.png" alt="Partner 15" class="partner-card__logo">
+                            <img src="./assets/img/partner/Venture Vaults.png" alt="Venture Vaults" class="partner-card__logo">
+                            <h3 class="partner-card__name">Venture Vaults</h3>
                         </div>
                     </div>
                 </div>
@@ -622,6 +1041,23 @@
                             <p class="member-item__title">
                                 DDS, California - Linda University
                             </p>
+                            <div class="member-item__social">
+                                <a href="https://twitter.com/BrianJahson" target="_blank" class="member-item__social-link" title="Twitter/X">
+                                    <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
+                                        <path d="M16 1.42062C15.405 1.66154 14.771 1.82123 14.11 1.89877C14.79 1.524 15.309 0.935077 15.553 0.225231C14.919 0.574154 14.219 0.820615 13.473 0.958154C12.871 0.366462 12.013 0 11.077 0C9.261 0 7.799 1.36062 7.799 3.02862C7.799 3.26862 7.821 3.49938 7.875 3.71908C5.148 3.59631 2.735 2.38985 1.114 0.552C0.831 1.00523 0.665 1.524 0.665 2.08246C0.665 3.13108 1.25 4.06062 2.122 4.59877C1.595 4.58954 1.078 4.44831 0.64 4.22585C0.64 4.23508 0.64 4.24708 0.64 4.25908C0.64 5.73046 1.777 6.95262 3.268 7.23415C3.001 7.30154 2.71 7.33385 2.408 7.33385C2.198 7.33385 1.986 7.32277 1.787 7.28215C2.212 8.48123 3.418 9.36277 4.852 9.39138C3.736 10.1972 2.319 10.6828 0.785 10.6828C0.516 10.6828 0.258 10.6717 0 10.6412C1.453 11.5062 3.175 12 5.032 12C11.068 12 14.368 7.38462 14.368 3.384C14.368 3.25015 14.363 3.12092 14.356 2.99262C15.007 2.56615 15.554 2.03354 16 1.42062Z" fill="currentColor"/>
+                                    </svg>
+                                </a>
+                                <a href="https://t.me/BrianJahson" target="_blank" class="member-item__social-link" title="Telegram">
+                                    <svg width="16" height="14" viewBox="0 0 16 14" fill="none">
+                                        <path d="M16 1.83L13.33 11.5c-.2.8-.72 1-1.46.62L8.33 9.5 6.5 11.25c-.18.18-.33.33-.67.33l.23-3.33L14.67 2.5c.27-.23-.06-.36-.42-.13L4.33 8.17l-3.25-1c-.7-.22-.72-.7.15-1.04L14.83.17c.58-.22 1.08.14.9.88z" fill="currentColor"/>
+                                    </svg>
+                                </a>
+                                <a href="https://linkedin.com/in/brianjahson" target="_blank" class="member-item__social-link" title="LinkedIn">
+                                    <svg width="13" height="12" viewBox="0 0 13 12" fill="none">
+                                        <path d="M0 1.39394C0 0.989891 0.146401 0.656558 0.439189 0.393939C0.731978 0.131309 1.11262 0 1.58108 0C2.04119 0 2.41344 0.129285 2.69788 0.387879C2.99066 0.654545 3.13707 1.00201 3.13707 1.4303C3.13707 1.81818 2.99486 2.14141 2.71042 2.4C2.41764 2.66667 2.03282 2.8 1.55598 2.8H1.54344C1.08333 2.8 0.711072 2.66667 0.426641 2.4C0.142209 2.13333 0 1.79798 0 1.39394ZM0.163127 12V3.90303H2.94884V12H0.163127ZM4.49228 12H7.27799V7.47879C7.27799 7.19595 7.31146 6.97777 7.37838 6.82424C7.49549 6.54949 7.67326 6.31716 7.91168 6.12727C8.1501 5.93737 8.44916 5.84242 8.80888 5.84242C9.74582 5.84242 10.2143 6.45252 10.2143 7.67273V12H13V7.35758C13 6.16161 12.7072 5.25455 12.1216 4.63636C11.536 4.01818 10.7622 3.70909 9.80019 3.70909C8.72104 3.70909 7.88031 4.15758 7.27799 5.05455V5.07879H7.26544L7.27799 5.05455V3.90303H4.49228C4.509 4.16161 4.51737 4.96565 4.51737 6.31515C4.51737 7.66464 4.509 9.55959 4.49228 12Z" fill="currentColor"/>
+                                    </svg>
+                                </a>
+                            </div>
                         </article>
 
                         <!-- member item 2 -->
@@ -637,6 +1073,23 @@
                             <p class="member-item__title">
                                 DDS, California - Linda University
                             </p>
+                            <div class="member-item__social">
+                                <a href="https://twitter.com/Lieum_DL" target="_blank" class="member-item__social-link" title="Twitter/X">
+                                    <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
+                                        <path d="M16 1.42062C15.405 1.66154 14.771 1.82123 14.11 1.89877C14.79 1.524 15.309 0.935077 15.553 0.225231C14.919 0.574154 14.219 0.820615 13.473 0.958154C12.871 0.366462 12.013 0 11.077 0C9.261 0 7.799 1.36062 7.799 3.02862C7.799 3.26862 7.821 3.49938 7.875 3.71908C5.148 3.59631 2.735 2.38985 1.114 0.552C0.831 1.00523 0.665 1.524 0.665 2.08246C0.665 3.13108 1.25 4.06062 2.122 4.59877C1.595 4.58954 1.078 4.44831 0.64 4.22585C0.64 4.23508 0.64 4.24708 0.64 4.25908C0.64 5.73046 1.777 6.95262 3.268 7.23415C3.001 7.30154 2.71 7.33385 2.408 7.33385C2.198 7.33385 1.986 7.32277 1.787 7.28215C2.212 8.48123 3.418 9.36277 4.852 9.39138C3.736 10.1972 2.319 10.6828 0.785 10.6828C0.516 10.6828 0.258 10.6717 0 10.6412C1.453 11.5062 3.175 12 5.032 12C11.068 12 14.368 7.38462 14.368 3.384C14.368 3.25015 14.363 3.12092 14.356 2.99262C15.007 2.56615 15.554 2.03354 16 1.42062Z" fill="currentColor"/>
+                                    </svg>
+                                </a>
+                                <a href="https://t.me/Lieum_DL" target="_blank" class="member-item__social-link" title="Telegram">
+                                    <svg width="16" height="14" viewBox="0 0 16 14" fill="none">
+                                        <path d="M16 1.83L13.33 11.5c-.2.8-.72 1-1.46.62L8.33 9.5 6.5 11.25c-.18.18-.33.33-.67.33l.23-3.33L14.67 2.5c.27-.23-.06-.36-.42-.13L4.33 8.17l-3.25-1c-.7-.22-.72-.7.15-1.04L14.83.17c.58-.22 1.08.14.9.88z" fill="currentColor"/>
+                                    </svg>
+                                </a>
+                                <a href="https://linkedin.com/in/lieum-labs" target="_blank" class="member-item__social-link" title="LinkedIn">
+                                    <svg width="13" height="12" viewBox="0 0 13 12" fill="none">
+                                        <path d="M0 1.39394C0 0.989891 0.146401 0.656558 0.439189 0.393939C0.731978 0.131309 1.11262 0 1.58108 0C2.04119 0 2.41344 0.129285 2.69788 0.387879C2.99066 0.654545 3.13707 1.00201 3.13707 1.4303C3.13707 1.81818 2.99486 2.14141 2.71042 2.4C2.41764 2.66667 2.03282 2.8 1.55598 2.8H1.54344C1.08333 2.8 0.711072 2.66667 0.426641 2.4C0.142209 2.13333 0 1.79798 0 1.39394ZM0.163127 12V3.90303H2.94884V12H0.163127ZM4.49228 12H7.27799V7.47879C7.27799 7.19595 7.31146 6.97777 7.37838 6.82424C7.49549 6.54949 7.67326 6.31716 7.91168 6.12727C8.1501 5.93737 8.44916 5.84242 8.80888 5.84242C9.74582 5.84242 10.2143 6.45252 10.2143 7.67273V12H13V7.35758C13 6.16161 12.7072 5.25455 12.1216 4.63636C11.536 4.01818 10.7622 3.70909 9.80019 3.70909C8.72104 3.70909 7.88031 4.15758 7.27799 5.05455V5.07879H7.26544L7.27799 5.05455V3.90303H4.49228C4.509 4.16161 4.51737 4.96565 4.51737 6.31515C4.51737 7.66464 4.509 9.55959 4.49228 12Z" fill="currentColor"/>
+                                    </svg>
+                                </a>
+                            </div>
                         </article>
 
                         <!-- member item 3 -->
@@ -652,6 +1105,23 @@
                             <p class="member-item__title">
                                 DDS, California - Linda University
                             </p>
+                            <div class="member-item__social">
+                                <a href="https://twitter.com/Tan_DeltoraLabs" target="_blank" class="member-item__social-link" title="Twitter/X">
+                                    <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
+                                        <path d="M16 1.42062C15.405 1.66154 14.771 1.82123 14.11 1.89877C14.79 1.524 15.309 0.935077 15.553 0.225231C14.919 0.574154 14.219 0.820615 13.473 0.958154C12.871 0.366462 12.013 0 11.077 0C9.261 0 7.799 1.36062 7.799 3.02862C7.799 3.26862 7.821 3.49938 7.875 3.71908C5.148 3.59631 2.735 2.38985 1.114 0.552C0.831 1.00523 0.665 1.524 0.665 2.08246C0.665 3.13108 1.25 4.06062 2.122 4.59877C1.595 4.58954 1.078 4.44831 0.64 4.22585C0.64 4.23508 0.64 4.24708 0.64 4.25908C0.64 5.73046 1.777 6.95262 3.268 7.23415C3.001 7.30154 2.71 7.33385 2.408 7.33385C2.198 7.33385 1.986 7.32277 1.787 7.28215C2.212 8.48123 3.418 9.36277 4.852 9.39138C3.736 10.1972 2.319 10.6828 0.785 10.6828C0.516 10.6828 0.258 10.6717 0 10.6412C1.453 11.5062 3.175 12 5.032 12C11.068 12 14.368 7.38462 14.368 3.384C14.368 3.25015 14.363 3.12092 14.356 2.99262C15.007 2.56615 15.554 2.03354 16 1.42062Z" fill="currentColor"/>
+                                    </svg>
+                                </a>
+                                <a href="https://t.me/Tan_DeltoraLabs" target="_blank" class="member-item__social-link" title="Telegram">
+                                    <svg width="16" height="14" viewBox="0 0 16 14" fill="none">
+                                        <path d="M16 1.83L13.33 11.5c-.2.8-.72 1-1.46.62L8.33 9.5 6.5 11.25c-.18.18-.33.33-.67.33l.23-3.33L14.67 2.5c.27-.23-.06-.36-.42-.13L4.33 8.17l-3.25-1c-.7-.22-.72-.7.15-1.04L14.83.17c.58-.22 1.08.14.9.88z" fill="currentColor"/>
+                                    </svg>
+                                </a>
+                                <a href="https://linkedin.com/in/tan-deltora" target="_blank" class="member-item__social-link" title="LinkedIn">
+                                    <svg width="13" height="12" viewBox="0 0 13 12" fill="none">
+                                        <path d="M0 1.39394C0 0.989891 0.146401 0.656558 0.439189 0.393939C0.731978 0.131309 1.11262 0 1.58108 0C2.04119 0 2.41344 0.129285 2.69788 0.387879C2.99066 0.654545 3.13707 1.00201 3.13707 1.4303C3.13707 1.81818 2.99486 2.14141 2.71042 2.4C2.41764 2.66667 2.03282 2.8 1.55598 2.8H1.54344C1.08333 2.8 0.711072 2.66667 0.426641 2.4C0.142209 2.13333 0 1.79798 0 1.39394ZM0.163127 12V3.90303H2.94884V12H0.163127ZM4.49228 12H7.27799V7.47879C7.27799 7.19595 7.31146 6.97777 7.37838 6.82424C7.49549 6.54949 7.67326 6.31716 7.91168 6.12727C8.1501 5.93737 8.44916 5.84242 8.80888 5.84242C9.74582 5.84242 10.2143 6.45252 10.2143 7.67273V12H13V7.35758C13 6.16161 12.7072 5.25455 12.1216 4.63636C11.536 4.01818 10.7622 3.70909 9.80019 3.70909C8.72104 3.70909 7.88031 4.15758 7.27799 5.05455V5.07879H7.26544L7.27799 5.05455V3.90303H4.49228C4.509 4.16161 4.51737 4.96565 4.51737 6.31515C4.51737 7.66464 4.509 9.55959 4.49228 12Z" fill="currentColor"/>
+                                    </svg>
+                                </a>
+                            </div>
                         </article>
 
                         <!-- member item 4 -->
@@ -667,6 +1137,23 @@
                             <p class="member-item__title">
                                 DDS, California - Linda University
                             </p>
+                            <div class="member-item__social">
+                                <a href="https://twitter.com/hasmed_deltora" target="_blank" class="member-item__social-link" title="Twitter/X">
+                                    <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
+                                        <path d="M16 1.42062C15.405 1.66154 14.771 1.82123 14.11 1.89877C14.79 1.524 15.309 0.935077 15.553 0.225231C14.919 0.574154 14.219 0.820615 13.473 0.958154C12.871 0.366462 12.013 0 11.077 0C9.261 0 7.799 1.36062 7.799 3.02862C7.799 3.26862 7.821 3.49938 7.875 3.71908C5.148 3.59631 2.735 2.38985 1.114 0.552C0.831 1.00523 0.665 1.524 0.665 2.08246C0.665 3.13108 1.25 4.06062 2.122 4.59877C1.595 4.58954 1.078 4.44831 0.64 4.22585C0.64 4.23508 0.64 4.24708 0.64 4.25908C0.64 5.73046 1.777 6.95262 3.268 7.23415C3.001 7.30154 2.71 7.33385 2.408 7.33385C2.198 7.33385 1.986 7.32277 1.787 7.28215C2.212 8.48123 3.418 9.36277 4.852 9.39138C3.736 10.1972 2.319 10.6828 0.785 10.6828C0.516 10.6828 0.258 10.6717 0 10.6412C1.453 11.5062 3.175 12 5.032 12C11.068 12 14.368 7.38462 14.368 3.384C14.368 3.25015 14.363 3.12092 14.356 2.99262C15.007 2.56615 15.554 2.03354 16 1.42062Z" fill="currentColor"/>
+                                    </svg>
+                                </a>
+                                <a href="https://t.me/hasmed_deltora" target="_blank" class="member-item__social-link" title="Telegram">
+                                    <svg width="16" height="14" viewBox="0 0 16 14" fill="none">
+                                        <path d="M16 1.83L13.33 11.5c-.2.8-.72 1-1.46.62L8.33 9.5 6.5 11.25c-.18.18-.33.33-.67.33l.23-3.33L14.67 2.5c.27-.23-.06-.36-.42-.13L4.33 8.17l-3.25-1c-.7-.22-.72-.7.15-1.04L14.83.17c.58-.22 1.08.14.9.88z" fill="currentColor"/>
+                                    </svg>
+                                </a>
+                                <a href="https://linkedin.com/in/hasmed-founder" target="_blank" class="member-item__social-link" title="LinkedIn">
+                                    <svg width="13" height="12" viewBox="0 0 13 12" fill="none">
+                                        <path d="M0 1.39394C0 0.989891 0.146401 0.656558 0.439189 0.393939C0.731978 0.131309 1.11262 0 1.58108 0C2.04119 0 2.41344 0.129285 2.69788 0.387879C2.99066 0.654545 3.13707 1.00201 3.13707 1.4303C3.13707 1.81818 2.99486 2.14141 2.71042 2.4C2.41764 2.66667 2.03282 2.8 1.55598 2.8H1.54344C1.08333 2.8 0.711072 2.66667 0.426641 2.4C0.142209 2.13333 0 1.79798 0 1.39394ZM0.163127 12V3.90303H2.94884V12H0.163127ZM4.49228 12H7.27799V7.47879C7.27799 7.19595 7.31146 6.97777 7.37838 6.82424C7.49549 6.54949 7.67326 6.31716 7.91168 6.12727C8.1501 5.93737 8.44916 5.84242 8.80888 5.84242C9.74582 5.84242 10.2143 6.45252 10.2143 7.67273V12H13V7.35758C13 6.16161 12.7072 5.25455 12.1216 4.63636C11.536 4.01818 10.7622 3.70909 9.80019 3.70909C8.72104 3.70909 7.88031 4.15758 7.27799 5.05455V5.07879H7.26544L7.27799 5.05455V3.90303H4.49228C4.509 4.16161 4.51737 4.96565 4.51737 6.31515C4.51737 7.66464 4.509 9.55959 4.49228 12Z" fill="currentColor"/>
+                                    </svg>
+                                </a>
+                            </div>
                         </article>
                     </div>
                 </div>
@@ -682,7 +1169,7 @@
                         <p class="appointment__desc section-desc">
                             Take your blockchain project to the next level with our comprehensive marketing solutions. Contact us today to discuss your growth strategy.
                         </p>
-                        <a href="#!" class="btn">Get Started</a>
+                        <button class="btn" id="openModalFooter">Get Started</button>
                     </div>
                 </div>
             </section>
@@ -694,7 +1181,7 @@
                 <div class="footer__row">
                     <!-- Company Info -->
                     <div class="footer__column footer__column--brand">
-                        <a href="/">
+                        <a href="#home">
                             <div class="logo">
                                 <img src="./assets/img/logo/logo_transparent.png" alt="Deltora Labs" class="logo__img" />
                                 <span class="logo__text">
@@ -706,23 +1193,46 @@
                         <p class="footer__desc">
                             Empowering Web3 builders with comprehensive marketing solutions and community growth strategies. Bridge the gap between innovation and success.
                         </p>
+                        
+                    </div>
+
+                    <!-- Services -->
+                    <div class="footer__column">
+                        <h3 class="footer__heading">Our Services</h3>
+                        <ul class="footer__list">
+                            <li class="footer__item">
+                                <a href="#services" class="footer__link">Community Building</a>
+                            </li>
+                            <li class="footer__item">
+                                <a href="#services" class="footer__link">KOLs Engagement</a>
+                            </li>
+                            <li class="footer__item">
+                                <a href="#services" class="footer__link">IDO LaunchPad</a>
+                            </li>
+                            <li class="footer__item">
+                                <a href="#services" class="footer__link">CEX Listing</a>
+                            </li>
+                            <li class="footer__item">
+                                <a href="#services" class="footer__link">Fund Raising</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="footer__column">
+                        <h3 class="footer__heading">Social Media</h3>
                         <div class="footer__social">
-                            <a href="#!" class="footer__social-btn" title="Telegram">
-                                <svg width="16" height="14" viewBox="0 0 16 14" fill="none">
-                                    <path d="M16 1.83L13.33 11.5c-.2.8-.72 1-1.46.62L8.33 9.5 6.5 11.25c-.18.18-.33.33-.67.33l.23-3.33L14.67 2.5c.27-.23-.06-.36-.42-.13L4.33 8.17l-3.25-1c-.7-.22-.72-.7.15-1.04L14.83.17c.58-.22 1.08.14.9.88z" fill="currentColor"/>
-                                </svg>
-                            </a>
-                            <a href="#!" class="footer__social-btn" title="Twitter/X">
+                            <a href="https://twitter.com/DeltoraLabs" target="_blank" class="footer__social-btn" title="Twitter/X">
                                 <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
                                     <path d="M16 1.42062C15.405 1.66154 14.771 1.82123 14.11 1.89877C14.79 1.524 15.309 0.935077 15.553 0.225231C14.919 0.574154 14.219 0.820615 13.473 0.958154C12.871 0.366462 12.013 0 11.077 0C9.261 0 7.799 1.36062 7.799 3.02862C7.799 3.26862 7.821 3.49938 7.875 3.71908C5.148 3.59631 2.735 2.38985 1.114 0.552C0.831 1.00523 0.665 1.524 0.665 2.08246C0.665 3.13108 1.25 4.06062 2.122 4.59877C1.595 4.58954 1.078 4.44831 0.64 4.22585C0.64 4.23508 0.64 4.24708 0.64 4.25908C0.64 5.73046 1.777 6.95262 3.268 7.23415C3.001 7.30154 2.71 7.33385 2.408 7.33385C2.198 7.33385 1.986 7.32277 1.787 7.28215C2.212 8.48123 3.418 9.36277 4.852 9.39138C3.736 10.1972 2.319 10.6828 0.785 10.6828C0.516 10.6828 0.258 10.6717 0 10.6412C1.453 11.5062 3.175 12 5.032 12C11.068 12 14.368 7.38462 14.368 3.384C14.368 3.25015 14.363 3.12092 14.356 2.99262C15.007 2.56615 15.554 2.03354 16 1.42062Z" fill="currentColor"/>
                                 </svg>
                             </a>
-                            <a href="#!" class="footer__social-btn" title="Discord">
-                                <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
-                                    <path d="M13.55 1.25C12.5 0.8 11.37 0.46 10.18 0.25c-.05 0-.1.02-.13.06-.12.21-.25.49-.34.71-.93-.14-1.85-.14-2.78 0-.09-.22-.22-.5-.34-.71-.03-.04-.08-.06-.13-.06-1.19.21-2.32.55-3.37 1-.02 0-.03.02-.04.04C.38 4.83-.23 8.35.07 11.83c0 .03.02.05.04.07 1.31.96 2.58 1.54 3.82 1.93.04.01.08 0 .11-.03.24-.33.46-.67.65-1.03.02-.04 0-.09-.04-.11-.21-.08-.41-.17-.6-.27-.05-.03-.05-.1 0-.14.04-.03.08-.06.12-.09.02-.02.05-.02.08-.01 1.26.57 2.62.57 3.86 0 .03-.01.06-.01.08.01.04.03.08.06.12.09.05.04.05.11 0 .14-.19.1-.39.19-.6.27-.04.02-.06.07-.04.11.19.36.41.7.65 1.03.03.03.07.04.11.03 1.24-.39 2.51-.97 3.82-1.93.02-.02.04-.04.04-.07.35-4.03-.59-7.53-2.49-10.64-.01-.02-.02-.04-.04-.04zM5.34 9.67c-.83 0-1.51-.76-1.51-1.69s.67-1.69 1.51-1.69c.85 0 1.52.76 1.51 1.69 0 .93-.67 1.69-1.51 1.69zm5.32 0c-.83 0-1.51-.76-1.51-1.69s.67-1.69 1.51-1.69c.85 0 1.52.76 1.51 1.69 0 .93-.66 1.69-1.51 1.69z" fill="currentColor"/>
+                            <a href="https://t.me/DeltoraLabs" target="_blank" class="footer__social-btn" title="Telegram">
+                                <svg width="16" height="14" viewBox="0 0 16 14" fill="none">
+                                    <path d="M16 1.83L13.33 11.5c-.2.8-.72 1-1.46.62L8.33 9.5 6.5 11.25c-.18.18-.33.33-.67.33l.23-3.33L14.67 2.5c.27-.23-.06-.36-.42-.13L4.33 8.17l-3.25-1c-.7-.22-.72-.7.15-1.04L14.83.17c.58-.22 1.08.14.9.88z" fill="currentColor"/>
                                 </svg>
                             </a>
-                            <a href="#!" class="footer__social-btn" title="LinkedIn">
+                            <a href="https://linkedin.com/company/deltora-labs" target="_blank" class="footer__social-btn" title="LinkedIn">
                                 <svg width="13" height="12" viewBox="0 0 13 12" fill="none">
                                     <path d="M0 1.39394C0 0.989891 0.146401 0.656558 0.439189 0.393939C0.731978 0.131309 1.11262 0 1.58108 0C2.04119 0 2.41344 0.129285 2.69788 0.387879C2.99066 0.654545 3.13707 1.00201 3.13707 1.4303C3.13707 1.81818 2.99486 2.14141 2.71042 2.4C2.41764 2.66667 2.03282 2.8 1.55598 2.8H1.54344C1.08333 2.8 0.711072 2.66667 0.426641 2.4C0.142209 2.13333 0 1.79798 0 1.39394ZM0.163127 12V3.90303H2.94884V12H0.163127ZM4.49228 12H7.27799V7.47879C7.27799 7.19595 7.31146 6.97777 7.37838 6.82424C7.49549 6.54949 7.67326 6.31716 7.91168 6.12727C8.1501 5.93737 8.44916 5.84242 8.80888 5.84242C9.74582 5.84242 10.2143 6.45252 10.2143 7.67273V12H13V7.35758C13 6.16161 12.7072 5.25455 12.1216 4.63636C11.536 4.01818 10.7622 3.70909 9.80019 3.70909C8.72104 3.70909 7.88031 4.15758 7.27799 5.05455V5.07879H7.26544L7.27799 5.05455V3.90303H4.49228C4.509 4.16161 4.51737 4.96565 4.51737 6.31515C4.51737 7.66464 4.509 9.55959 4.49228 12Z" fill="currentColor"/>
                                 </svg>
@@ -730,64 +1240,11 @@
                         </div>
                     </div>
 
-                    <!-- Quick Links -->
+                    <!-- Newsletter -->
                     <div class="footer__column">
-                        <h3 class="footer__heading">Quick Links</h3>
-                        <ul class="footer__list">
-                            <li class="footer__item">
-                                <a href="#!" class="footer__link">About Us</a>
-                            </li>
-                            <li class="footer__item">
-                                <a href="#!" class="footer__link">Our Services</a>
-                            </li>
-                            <li class="footer__item">
-                                <a href="#!" class="footer__link">Portfolio</a>
-                            </li>
-                            <li class="footer__item">
-                                <a href="#!" class="footer__link">Our Team</a>
-                            </li>
-                            <li class="footer__item">
-                                <a href="#!" class="footer__link">Partners</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Services -->
-                    <div class="footer__column">
-                        <h3 class="footer__heading">Services</h3>
-                        <ul class="footer__list">
-                            <li class="footer__item">
-                                <a href="#!" class="footer__link">Community Building</a>
-                            </li>
-                            <li class="footer__item">
-                                <a href="#!" class="footer__link">Token Marketing</a>
-                            </li>
-                            <li class="footer__item">
-                                <a href="#!" class="footer__link">Analytics & Growth</a>
-                            </li>
-                            <li class="footer__item">
-                                <a href="#!" class="footer__link">Strategic Partnerships</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Contact & Newsletter -->
-                    <div class="footer__column">
-                        <h3 class="footer__heading">Contact Info</h3>
-                        <div class="footer__contact">
-                            <div class="footer__contact-item">
-                                <span class="footer__contact-label">Email:</span>
-                                <a href="mailto:hello@deltoralabs.com" class="footer__contact-link">hello@deltoralabs.com</a>
-                            </div>
-                            <div class="footer__contact-item">
-                                <span class="footer__contact-label">Telegram:</span>
-                                <a href="#!" class="footer__contact-link">@DeltoraLabs</a>
-                            </div>
-                        </div>
-
-                        <h3 class="footer__heading footer__heading--newsletter">Newsletter</h3>
+                        <h3 class="footer__heading">📰 Newsletter</h3>
                         <p class="footer__desc footer__desc--newsletter">
-                            Get Web3 marketing insights delivered to your inbox.
+                            Get the latest Web3 marketing insights and industry updates delivered straight to your inbox.
                         </p>
 
                         <form class="footer-form" action="">
@@ -796,7 +1253,7 @@
                                 type="email"
                                 name="email"
                                 id="email"
-                                placeholder="Enter your email..."
+                                placeholder="Enter your email address..."
                                 required
                             />
                             <button class="btn footer-form__submit" type="submit">
@@ -808,13 +1265,329 @@
 
                 <div class="footer__copyright">
                     <p class="footer__copyright-text">
-                        © 2025 Deltora Labs. All rights reserved. | Empowering Web3 innovation through strategic marketing.
+                        © 2025 Deltora Labs. All rights reserved. | Empowering Web3 innovation through strategic marketing solutions.
                     </p>
                 </div>
             </div>
         </footer>
 
+        <!-- Custom Alert -->
+        <div class="custom-alert" id="customAlert">
+            <div class="custom-alert__overlay"></div>
+            <div class="custom-alert__content">
+                <span class="custom-alert__icon" id="alertIcon">✓</span>
+                <h3 class="custom-alert__title" id="alertTitle">Success</h3>
+                <p class="custom-alert__message" id="alertMessage">Your action was completed successfully!</p>
+                <button class="custom-alert__button" id="alertButton" onclick="closeCustomAlert()">OK</button>
+            </div>
+        </div>
+
+        <!-- Contact Modal -->
+        <div class="modal" id="contactModal">
+            <div class="modal__overlay"></div>
+            <div class="modal__content">
+                <div class="modal__header">
+                    <h2 class="modal__title">Apply for Deltora Labs</h2>
+                    <button class="modal__close" id="closeModal" aria-label="Close modal">&times;</button>
+                </div>
+                <form class="modal__form" id="contactForm">
+                    <div class="form__group">
+                        <input 
+                            type="text" 
+                            class="form__input" 
+                            name="projectName"
+                            placeholder="Project Name" 
+                            required
+                        />
+                    </div>
+                    
+                    <div class="form__group">
+                        <input 
+                            type="url" 
+                            class="form__input" 
+                            name="xAccount"
+                            placeholder="X account link" 
+                            required
+                        />
+                    </div>
+                    
+                    <div class="form__row">
+                        <div class="form__group form__group--half">
+                            <input 
+                                type="text" 
+                                class="form__input" 
+                                name="yourName"
+                                placeholder="Your Name" 
+                                required
+                            />
+                        </div>
+                        <div class="form__group form__group--half">
+                            <input 
+                                type="text" 
+                                class="form__input" 
+                                name="telegramHandle"
+                                placeholder="Username Telegram" 
+                                required
+                            />
+                        </div>
+                    </div>
+                    
+                    <div class="form__group">
+                        <label class="form__label">Budget</label>
+                        <select class="form__select" name="budget" required>
+                            <option value="">Select budget range</option>
+                            <option value="5-10k">$5k - $10k</option>
+                            <option value="10-25k">$10k - $25k</option>
+                            <option value="25-50k">$25k - $50k</option>
+                            <option value="50k+">$50k+</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form__group">
+                        <textarea 
+                            class="form__textarea" 
+                            name="projectDescription"
+                            placeholder="Tell us about your project and goals..."
+                            rows="4"
+                        ></textarea>
+                    </div>
+                    
+                    <button type="button" class="btn form__submit" id="applyBtn">Apply</button>
+                </form>
+            </div>
+        </div>
+
         <script>
+            // Custom Alert Functions
+            function showCustomAlert(message, type = 'success', title = '') {
+                const alert = document.getElementById('customAlert');
+                const icon = document.getElementById('alertIcon');
+                const titleEl = document.getElementById('alertTitle');
+                const messageEl = document.getElementById('alertMessage');
+                const button = document.getElementById('alertButton');
+
+                // Set content
+                messageEl.textContent = message;
+                
+                // Set type styles and content
+                icon.className = 'custom-alert__icon';
+                button.className = 'custom-alert__button';
+                
+                switch(type) {
+                    case 'success':
+                        icon.textContent = '🎉';
+                        icon.classList.add('custom-alert__icon--success');
+                        titleEl.textContent = title || 'Success!';
+                        button.classList.add('custom-alert__button--success');
+                        break;
+                    case 'error':
+                        icon.textContent = '❌';
+                        icon.classList.add('custom-alert__icon--error');
+                        titleEl.textContent = title || 'Error!';
+                        button.classList.add('custom-alert__button--error');
+                        break;
+                    case 'warning':
+                        icon.textContent = '⚠️';
+                        icon.classList.add('custom-alert__icon--warning');
+                        titleEl.textContent = title || 'Warning!';
+                        break;
+                    default:
+                        icon.textContent = 'ℹ️';
+                        titleEl.textContent = title || 'Information';
+                }
+
+                // Show alert
+                alert.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeCustomAlert() {
+                const alert = document.getElementById('customAlert');
+                alert.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+
+            // Close alert when clicking overlay
+            document.getElementById('customAlert').querySelector('.custom-alert__overlay').addEventListener('click', closeCustomAlert);
+
+            // Modal functionality
+            const modal = document.getElementById('contactModal');
+            const openModalBtns = document.querySelectorAll('#openModalHeader, #openModalFooter');
+            const closeModalBtn = document.getElementById('closeModal');
+            const overlay = document.querySelector('.modal__overlay');
+            const contactForm = document.getElementById('contactForm');
+            const applyBtn = document.getElementById('applyBtn');
+
+            // Open modal
+            openModalBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            // Close modal function
+            function closeModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                contactForm.reset();
+            }
+
+            // Close modal events
+            closeModalBtn.addEventListener('click', closeModal);
+            overlay.addEventListener('click', closeModal);
+
+            // Close modal with Escape key (only if no alert is open)
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    const alertOpen = document.getElementById('customAlert').classList.contains('active');
+                    if (alertOpen) {
+                        closeCustomAlert();
+                    } else if (modal.classList.contains('active')) {
+                        closeModal();
+                    }
+                }
+            });
+
+            // Form submission
+            applyBtn.addEventListener('click', async function(e) {
+                e.preventDefault();
+                
+                // Show loading state
+                const originalText = applyBtn.textContent;
+                applyBtn.textContent = 'Submitting...';
+                applyBtn.disabled = true;
+
+                // Get form data
+                const formData = {
+                    projectName: document.querySelector('input[name="projectName"]').value.trim(),
+                    xAccount: document.querySelector('input[name="xAccount"]').value.trim(),
+                    yourName: document.querySelector('input[name="yourName"]').value.trim(),
+                    telegramHandle: document.querySelector('input[name="telegramHandle"]').value.trim(),
+                    budget: document.querySelector('select[name="budget"]').value,
+                    projectDescription: document.querySelector('textarea[name="projectDescription"]').value.trim()
+                };
+
+                // Basic validation
+                if (!formData.projectName || !formData.xAccount || !formData.yourName || !formData.telegramHandle || !formData.budget) {
+                    showCustomAlert('Please fill in all required fields', 'warning', 'Validation Error');
+                    applyBtn.textContent = originalText;
+                    applyBtn.disabled = false;
+                    return;
+                }
+
+                // Validate X account URL
+                if (!formData.xAccount.includes('x.com') && !formData.xAccount.includes('twitter.com')) {
+                    showCustomAlert('Please enter a valid X (Twitter) account URL', 'warning', 'Invalid URL');
+                    applyBtn.textContent = originalText;
+                    applyBtn.disabled = false;
+                    return;
+                }
+
+                try {
+                    // Send to backend
+                    const response = await fetch('/send-email', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData),
+                    });
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        // Success message
+                        showCustomAlert('We will review your application and contact you within 24-48 hours via Telegram or email.\n\nThank you for choosing Deltora Labs!', 'success', 'Application Submitted!');
+                        closeModal();
+                    } else {
+                        throw new Error(result.message || 'Failed to submit application');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    showCustomAlert('Please check your internet connection and try again.\n\nIf the problem persists, contact us directly via Telegram: @DeltoraLabs', 'error', 'Submission Failed');
+                } finally {
+                    // Reset button state
+                    applyBtn.textContent = originalText;
+                    applyBtn.disabled = false;
+                }
+            });
+
+            // Auto-format Telegram handle
+            const telegramInput = document.querySelector('input[name="telegramHandle"]');
+            telegramInput.addEventListener('input', function(e) {
+                let value = e.target.value;
+                if (value && !value.startsWith('@')) {
+                    e.target.value = '@' + value;
+                }
+            });
+
+            // Newsletter subscription - Wait for DOM to be fully loaded
+            document.addEventListener('DOMContentLoaded', function() {
+                const newsletterForm = document.querySelector('.footer-form');
+                const newsletterInput = document.querySelector('.footer-form__input');
+                const newsletterBtn = document.querySelector('.footer-form__submit');
+
+                console.log('Newsletter elements:', { newsletterForm, newsletterInput, newsletterBtn });
+
+                if (newsletterForm && newsletterInput && newsletterBtn) {
+                    newsletterForm.addEventListener('submit', async function(e) {
+                        e.preventDefault();
+                        
+                        console.log('Newsletter form submitted');
+                        
+                        const email = newsletterInput.value.trim();
+                        
+                        // Validation
+                        if (!email) {
+                            showCustomAlert('Please enter your email address', 'warning', 'Email Required');
+                            return;
+                        }
+
+                        if (!email.includes('@') || !email.includes('.')) {
+                            showCustomAlert('Please enter a valid email address', 'warning', 'Invalid Email');
+                            return;
+                        }
+
+                        // Show loading state
+                        const originalText = newsletterBtn.textContent;
+                        newsletterBtn.textContent = 'Subscribing...';
+                        newsletterBtn.disabled = true;
+
+                        try {
+                            console.log('Sending newsletter request for:', email);
+                            
+                            const response = await fetch('/newsletter', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ email }),
+                            });
+
+                            const result = await response.json();
+                            console.log('Newsletter response:', result);
+
+                            if (result.success) {
+                                showCustomAlert('Welcome to Deltora Labs! Check your email for a welcome message with exclusive Web3 marketing insights.', 'success', 'Successfully Subscribed!');
+                                newsletterForm.reset();
+                            } else {
+                                throw new Error(result.message || 'Failed to subscribe');
+                            }
+                        } catch (error) {
+                            console.error('Newsletter error:', error);
+                            showCustomAlert('Failed to subscribe to newsletter. Please check your connection and try again.\n\nMake sure the server is running on port 3000.', 'error', 'Subscription Failed');
+                        } finally {
+                            // Reset button state
+                            newsletterBtn.textContent = originalText;
+                            newsletterBtn.disabled = false;
+                        }
+                    });
+                } else {
+                    console.error('Newsletter form elements not found');
+                }
+            });
+
             // Tự động nhân đôi portfolio items cho animation mượt mà
             document.querySelectorAll('.portfolio__row').forEach(row => {
                 row.innerHTML += row.innerHTML; // nhân đôi nội dung của row
