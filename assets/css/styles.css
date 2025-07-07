@@ -236,6 +236,39 @@ button {
     right: 0;
     z-index: 1000;
     padding: 20px 0;
+    background: transparent;
+    backdrop-filter: none;
+    border-bottom: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(0);
+}
+
+/* Header hidden state */
+.header-top.header-hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Header show/hide animation states */
+.header-top.header-show {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Ensure smooth scrolling behavior */
+@media (max-width: 768px) {
+    .header-top {
+        padding: 15px 0;
+        background: transparent;
+        backdrop-filter: none;
+    }
+    
+    .header-top.header-hidden {
+        transform: translateY(-100%);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 }
 
 .header-top__inner {
