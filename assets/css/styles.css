@@ -362,9 +362,16 @@ button {
     color: #fff;
 }
 
+/* Hide desktop header action on mobile */
+@media (max-width: 1024px) {
+    .header-action {
+        display: none;
+    }
+}
+
 /* Hero */
 .hero {
-    margin-top: 76px;
+    padding: 50px 0;
     display: flex;
     align-items: center;
 }
@@ -378,8 +385,83 @@ button {
     flex-grow: 1;
 }
 
+/* Hero Responsive */
+@media (max-width: 1024px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 0;
+        gap: 40px;
+    }
+    
+    .hero__content {
+        width: 100%;
+        order: 1;
+    }
+    
+    .hero__media {
+        order: 2;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .hero__heading {
+        font-size: 4.2rem;
+    }
+    
+    .hero__desc {
+        font-size: 1.4rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 30px 0;
+        gap: 30px;
+    }
+    
+    .hero__heading {
+        font-size: 3.2rem;
+        line-height: 1.2;
+    }
+    
+    .hero__desc {
+        font-size: 1.3rem;
+        margin-top: 16px;
+    }
+    
+    .hero__row {
+        margin-top: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 20px 0;
+        gap: 25px;
+    }
+    
+    .hero__heading {
+        font-size: 2.8rem;
+        line-height: 1.1;
+    }
+    
+    .hero__desc {
+        font-size: 1.2rem;
+        margin-top: 14px;
+    }
+    
+    .hero__row {
+        margin-top: 20px;
+    }
+}
+
 .hero__heading {
-    font-size: 7rem;
+    font-size: 5.5rem;
     font-weight: 600;
     line-height: 1.14;
     letter-spacing: -0.02em;
@@ -389,7 +471,7 @@ button {
 .hero__desc {
     margin-top: 22px;
     font-weight: 300;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     line-height: 1.67;
     color: #c9c2dc;
 }
@@ -397,32 +479,8 @@ button {
 .hero__row {
     display: flex;
     align-items: center;
-    margin-top: 38px;
-}
-
-
-
-.hero__images {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
-
-.hero__img:first-child {
-    position: relative;
-    margin-right: -6px;
-}
-
-.hero__img {
-    width: 330px;
-    height: 540px;
-    border-radius: 6px;
-    object-fit: cover;
-}
-
-.hero__img:last-child {
-    width: 210px;
-    height: 410px;
+    justify-content: center;
+    margin-top: 30px;
 }
 
 .about__list {
@@ -431,7 +489,7 @@ button {
 
 /* about */
 .about {
-    padding: 100px 0;
+    padding: 50px 0;
     background: transparent;
 }
 

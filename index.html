@@ -421,6 +421,885 @@
                     font-size: 40px;
                 }
             }
+
+            /* Hero Media Styles */
+            .hero__media {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            /* Ecosystem Orbit Styles */
+            .ecosystem-orbit {
+                position: relative;
+                width: 600px;
+                height: 600px;
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .ecosystem-center {
+                position: absolute;
+                z-index: 10;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                width: 80px;
+                height: 80px;
+            }
+
+            @keyframes fadeInOut {
+                0%, 80%, 100% { opacity: 0; }
+                10%, 70% { opacity: 1; }
+            }
+
+            .bitcoin-icon {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                object-fit: cover;
+                margin-bottom: 4px;
+                box-shadow: 0 0 30px rgba(247, 147, 26, 0.8), 0 0 60px rgba(247, 147, 26, 0.6), 0 0 90px rgba(247, 147, 26, 0.3);
+                animation: pulse 3s ease-in-out infinite;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                position: relative;
+                z-index: 50;
+            }
+
+            .orbit {
+                position: absolute;
+                border: none;
+                border-radius: 50%;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            .orbit-1 {
+                width: 180px;
+                height: 180px;
+            }
+
+            .orbit-2 {
+                width: 220px;
+                height: 220px;
+            }
+
+            .orbit-3 {
+                width: 260px;
+                height: 260px;
+            }
+
+            .orbit-4 {
+                width: 300px;
+                height: 300px;
+            }
+
+            .orbit-5 {
+                width: 340px;
+                height: 340px;
+            }
+
+            .orbit-6 {
+                width: 380px;
+                height: 380px;
+            }
+
+            .orbit-7 {
+                width: 420px;
+                height: 420px;
+            }
+
+            .orbit-8 {
+                width: 460px;
+                height: 460px;
+            }
+
+            .orbit-9 {
+                width: 500px;
+                height: 500px;
+            }
+
+            .orbit-10 {
+                width: 540px;
+                height: 540px;
+            }
+
+            .orbit-11 {
+                width: 580px;
+                height: 580px;
+            }
+
+
+
+            .ecosystem-item {
+                position: absolute;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 30px;
+                height: 30px;
+                top: 50%;
+                left: 50%;
+                transform-origin: 50% 50%;
+                z-index: 20;
+            }
+
+            .ecosystem-item::before {
+                content: '';
+                position: absolute;
+                width: 4px;
+                height: 4px;
+                background: radial-gradient(circle, rgba(120, 60, 180, 0.6) 0%, transparent 70%);
+                border-radius: 50%;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                animation: trail 2s ease-in-out infinite;
+                z-index: -1;
+            }
+
+            @keyframes trail {
+                0%, 100% {
+                    opacity: 0.3;
+                    transform: translate(-50%, -50%) scale(0.8);
+                }
+                50% {
+                    opacity: 0.8;
+                    transform: translate(-50%, -50%) scale(1.2);
+                }
+            }
+
+            .orbit-1 {
+                /* Elip cố định - không quay */
+            }
+
+            .orbit-2 {
+                /* Elip cố định - không quay */
+            }
+
+            .orbit-3 {
+                /* Elip cố định - không quay */
+            }
+
+            .orbit-4 {
+                /* Elip cố định - không quay */
+            }
+
+            .orbit-5 {
+                /* Elip cố định - không quay */
+            }
+
+            .orbit-6 {
+                /* Elip cố định - không quay */
+            }
+
+            .orbit-1 .ecosystem-item {
+                animation: rotateOrbit1 15s linear infinite;
+                animation-delay: -2s;
+                transform-origin: -75px 15px;
+                transform: translateX(90px) translateY(-15px);
+            }
+
+            .orbit-2 .ecosystem-item {
+                animation: rotateOrbit2 18s linear infinite;
+                animation-delay: -9s;
+                transform-origin: -95px 15px;
+                transform: translateX(110px) translateY(-15px);
+            }
+
+            .orbit-3 .ecosystem-item {
+                animation: rotateOrbit3 22s linear infinite;
+                animation-delay: -15s;
+                transform-origin: -115px 15px;
+                transform: translateX(130px) translateY(-15px);
+            }
+
+            .orbit-4 .ecosystem-item {
+                animation: rotateOrbit4 25s linear infinite;
+                animation-delay: -7s;
+                transform-origin: -135px 15px;
+                transform: translateX(150px) translateY(-15px);
+            }
+
+            .orbit-5 .ecosystem-item {
+                animation: rotateOrbit5 28s linear infinite;
+                animation-delay: -21s;
+                transform-origin: -155px 15px;
+                transform: translateX(170px) translateY(-15px);
+            }
+
+            .orbit-6 .ecosystem-item {
+                animation: rotateOrbit6 32s linear infinite;
+                animation-delay: -4s;
+                transform-origin: -175px 15px;
+                transform: translateX(190px) translateY(-15px);
+            }
+
+            .orbit-7 .ecosystem-item {
+                animation: rotateOrbit7 35s linear infinite;
+                animation-delay: -18s;
+                transform-origin: -195px 15px;
+                transform: translateX(210px) translateY(-15px);
+            }
+
+            .orbit-8 .ecosystem-item {
+                animation: rotateOrbit8 38s linear infinite;
+                animation-delay: -12s;
+                transform-origin: -215px 15px;
+                transform: translateX(230px) translateY(-15px);
+            }
+
+            .orbit-9 .ecosystem-item {
+                animation: rotateOrbit9 41s linear infinite;
+                animation-delay: -27s;
+                transform-origin: -235px 15px;
+                transform: translateX(250px) translateY(-15px);
+            }
+
+            .orbit-10 .ecosystem-item {
+                animation: rotateOrbit10 44s linear infinite;
+                animation-delay: -6s;
+                transform-origin: -255px 15px;
+                transform: translateX(270px) translateY(-15px);
+            }
+
+            .orbit-11 .ecosystem-item {
+                animation: rotateOrbit11 47s linear infinite;
+                animation-delay: -33s;
+                transform-origin: -275px 15px;
+                transform: translateX(290px) translateY(-15px);
+            }
+
+
+
+            .ecosystem-icon {
+                width: 28px;
+                height: 28px;
+                border-radius: 50%;
+                transition: all 0.3s ease;
+                object-fit: cover;
+                cursor: pointer;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+                filter: brightness(0.9) contrast(1.1);
+            }
+
+            .ecosystem-icon:hover {
+                transform: scale(1.3);
+                box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3), 0 0 20px rgba(120, 60, 180, 0.4);
+                filter: brightness(1.1) contrast(1.2);
+                z-index: 100;
+            }
+
+
+
+            /* Keyframes xoay vòng tròn hoàn hảo */
+            @keyframes rotateOrbit1 {
+                0% { transform: translateX(90px) translateY(-15px) rotate(0deg); }
+                100% { transform: translateX(90px) translateY(-15px) rotate(360deg); }
+            }
+
+            @keyframes rotateOrbit2 {
+                0% { transform: translateX(110px) translateY(-15px) rotate(0deg); }
+                100% { transform: translateX(110px) translateY(-15px) rotate(360deg); }
+            }
+
+            @keyframes rotateOrbit3 {
+                0% { transform: translateX(130px) translateY(-15px) rotate(0deg); }
+                100% { transform: translateX(130px) translateY(-15px) rotate(360deg); }
+            }
+
+            @keyframes rotateOrbit4 {
+                0% { transform: translateX(150px) translateY(-15px) rotate(0deg); }
+                100% { transform: translateX(150px) translateY(-15px) rotate(360deg); }
+            }
+
+            @keyframes rotateOrbit5 {
+                0% { transform: translateX(170px) translateY(-15px) rotate(0deg); }
+                100% { transform: translateX(170px) translateY(-15px) rotate(360deg); }
+            }
+
+            @keyframes rotateOrbit6 {
+                0% { transform: translateX(190px) translateY(-15px) rotate(0deg); }
+                100% { transform: translateX(190px) translateY(-15px) rotate(360deg); }
+            }
+
+            @keyframes rotateOrbit7 {
+                0% { transform: translateX(210px) translateY(-15px) rotate(0deg); }
+                100% { transform: translateX(210px) translateY(-15px) rotate(360deg); }
+            }
+
+            @keyframes rotateOrbit8 {
+                0% { transform: translateX(230px) translateY(-15px) rotate(0deg); }
+                100% { transform: translateX(230px) translateY(-15px) rotate(360deg); }
+            }
+
+            @keyframes rotateOrbit9 {
+                0% { transform: translateX(250px) translateY(-15px) rotate(0deg); }
+                100% { transform: translateX(250px) translateY(-15px) rotate(360deg); }
+            }
+
+            @keyframes rotateOrbit10 {
+                0% { transform: translateX(270px) translateY(-15px) rotate(0deg); }
+                100% { transform: translateX(270px) translateY(-15px) rotate(360deg); }
+            }
+
+            @keyframes rotateOrbit11 {
+                0% { transform: translateX(290px) translateY(-15px) rotate(0deg); }
+                100% { transform: translateX(290px) translateY(-15px) rotate(360deg); }
+            }
+
+
+
+            @keyframes pulse {
+                0%, 100% {
+                    box-shadow: 0 0 30px rgba(247, 147, 26, 0.8), 0 0 60px rgba(247, 147, 26, 0.6), 0 0 90px rgba(247, 147, 26, 0.3);
+                    transform: scale(1);
+                }
+                50% {
+                    box-shadow: 0 0 50px rgba(247, 147, 26, 1), 0 0 100px rgba(247, 147, 26, 0.8), 0 0 150px rgba(247, 147, 26, 0.4);
+                    transform: scale(1.05);
+                }
+            }
+
+            .bitcoin-icon:hover {
+                animation-play-state: paused;
+                transform: scale(1.1) !important;
+                box-shadow: 0 0 40px rgba(247, 147, 26, 1), 0 0 80px rgba(247, 147, 26, 0.8), 0 0 120px rgba(247, 147, 26, 0.5) !important;
+            }
+
+            /* Responsive for ecosystem orbit */
+            @media (max-width: 768px) {
+                .hero__media {
+                    min-height: auto;
+                }
+                
+                .ecosystem-orbit {
+                    margin-top: 50px;
+                    width: 300px;
+                    height: 300px;
+                }
+
+                .ecosystem-center {
+                    width: 45px;
+                    height: 45px;
+                }
+
+                .bitcoin-icon {
+                    width: 45px;
+                    height: 45px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    margin-bottom: 2px;
+                    box-shadow: 0 0 20px rgba(247, 147, 26, 0.6), 0 0 40px rgba(247, 147, 26, 0.4), 0 0 60px rgba(247, 147, 26, 0.2);
+                }
+
+                .orbit-1 { width: 70px; height: 70px; }
+                .orbit-2 { width: 85px; height: 85px; }
+                .orbit-3 { width: 100px; height: 100px; }
+                .orbit-4 { width: 115px; height: 115px; }
+                .orbit-5 { width: 130px; height: 130px; }
+                .orbit-6 { width: 145px; height: 145px; }
+                .orbit-7 { width: 160px; height: 160px; }
+                .orbit-8 { width: 175px; height: 175px; }
+                .orbit-9 { width: 190px; height: 190px; }
+                .orbit-10 { width: 205px; height: 205px; }
+                .orbit-11 { width: 220px; height: 220px; }
+
+
+                .ecosystem-icon {
+                    width: 18px;
+                    height: 18px;
+                }
+
+                .ecosystem-icon:hover {
+                    transform: scale(1.2);
+                }
+
+                .ecosystem-item::before {
+                    width: 2px;
+                    height: 2px;
+                }
+
+                .ecosystem-center::after {
+                    display: none;
+                }
+
+                /* Mobile animations - Rotation tròn hoàn hảo */
+                .orbit-1 .ecosystem-item { animation: rotateOrbitMobile1 15s linear infinite; animation-delay: -2s; transform-origin: -35px 10px; transform: translateX(45px) translateY(-10px); }
+                .orbit-2 .ecosystem-item { animation: rotateOrbitMobile2 18s linear infinite; animation-delay: -9s; transform-origin: -45px 10px; transform: translateX(55px) translateY(-10px); }
+                .orbit-3 .ecosystem-item { animation: rotateOrbitMobile3 22s linear infinite; animation-delay: -15s; transform-origin: -55px 10px; transform: translateX(65px) translateY(-10px); }
+                .orbit-4 .ecosystem-item { animation: rotateOrbitMobile4 25s linear infinite; animation-delay: -7s; transform-origin: -65px 10px; transform: translateX(75px) translateY(-10px); }
+                .orbit-5 .ecosystem-item { animation: rotateOrbitMobile5 28s linear infinite; animation-delay: -21s; transform-origin: -75px 10px; transform: translateX(85px) translateY(-10px); }
+                .orbit-6 .ecosystem-item { animation: rotateOrbitMobile6 32s linear infinite; animation-delay: -4s; transform-origin: -85px 10px; transform: translateX(95px) translateY(-10px); }
+                .orbit-7 .ecosystem-item { animation: rotateOrbitMobile7 35s linear infinite; animation-delay: -18s; transform-origin: -95px 10px; transform: translateX(105px) translateY(-10px); }
+                .orbit-8 .ecosystem-item { animation: rotateOrbitMobile8 38s linear infinite; animation-delay: -12s; transform-origin: -105px 10px; transform: translateX(115px) translateY(-10px); }
+                .orbit-9 .ecosystem-item { animation: rotateOrbitMobile9 41s linear infinite; animation-delay: -27s; transform-origin: -115px 10px; transform: translateX(125px) translateY(-10px); }
+                .orbit-10 .ecosystem-item { animation: rotateOrbitMobile10 44s linear infinite; animation-delay: -6s; transform-origin: -125px 10px; transform: translateX(135px) translateY(-10px); }
+                .orbit-11 .ecosystem-item { animation: rotateOrbitMobile11 47s linear infinite; animation-delay: -33s; transform-origin: -135px 10px; transform: translateX(145px) translateY(-10px); }
+
+            }
+
+            /* Keyframes cho mobile - rotation tròn hoàn hảo */
+            @media (max-width: 768px) {
+                @keyframes rotateOrbitMobile1 {
+                    0% { transform: translateX(45px) translateY(-10px) rotate(0deg); }
+                    100% { transform: translateX(45px) translateY(-10px) rotate(360deg); }
+                }
+
+                @keyframes rotateOrbitMobile2 {
+                    0% { transform: translateX(55px) translateY(-10px) rotate(0deg); }
+                    100% { transform: translateX(55px) translateY(-10px) rotate(360deg); }
+                }
+
+                @keyframes rotateOrbitMobile3 {
+                    0% { transform: translateX(65px) translateY(-10px) rotate(0deg); }
+                    100% { transform: translateX(65px) translateY(-10px) rotate(360deg); }
+                }
+
+                @keyframes rotateOrbitMobile4 {
+                    0% { transform: translateX(75px) translateY(-10px) rotate(0deg); }
+                    100% { transform: translateX(75px) translateY(-10px) rotate(360deg); }
+                }
+
+                @keyframes rotateOrbitMobile5 {
+                    0% { transform: translateX(85px) translateY(-10px) rotate(0deg); }
+                    100% { transform: translateX(85px) translateY(-10px) rotate(360deg); }
+                }
+
+                @keyframes rotateOrbitMobile6 {
+                    0% { transform: translateX(95px) translateY(-10px) rotate(0deg); }
+                    100% { transform: translateX(95px) translateY(-10px) rotate(360deg); }
+                }
+
+                @keyframes rotateOrbitMobile7 {
+                    0% { transform: translateX(105px) translateY(-10px) rotate(0deg); }
+                    100% { transform: translateX(105px) translateY(-10px) rotate(360deg); }
+                }
+
+                @keyframes rotateOrbitMobile8 {
+                    0% { transform: translateX(115px) translateY(-10px) rotate(0deg); }
+                    100% { transform: translateX(115px) translateY(-10px) rotate(360deg); }
+                }
+
+                @keyframes rotateOrbitMobile9 {
+                    0% { transform: translateX(125px) translateY(-10px) rotate(0deg); }
+                    100% { transform: translateX(125px) translateY(-10px) rotate(360deg); }
+                }
+
+                @keyframes rotateOrbitMobile10 {
+                    0% { transform: translateX(135px) translateY(-10px) rotate(0deg); }
+                    100% { transform: translateX(135px) translateY(-10px) rotate(360deg); }
+                }
+
+                @keyframes rotateOrbitMobile11 {
+                    0% { transform: translateX(145px) translateY(-10px) rotate(0deg); }
+                    100% { transform: translateX(145px) translateY(-10px) rotate(360deg); }
+                }
+
+
+                
+
+            }
+
+            /* Mobile Menu Styles */
+            .mobile-menu-btn {
+                display: none;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 40px;
+                height: 40px;
+                background: transparent;
+                border: none;
+                cursor: pointer;
+                padding: 0;
+                z-index: 1001;
+                transition: all 0.3s ease;
+            }
+
+            .mobile-menu-btn__line {
+                width: 25px;
+                height: 3px;
+                background: #fff;
+                margin: 3px 0;
+                transition: all 0.3s ease;
+                border-radius: 2px;
+            }
+
+            .mobile-menu-btn.active .mobile-menu-btn__line:nth-child(1) {
+                transform: rotate(45deg) translate(6px, 6px);
+            }
+
+            .mobile-menu-btn.active .mobile-menu-btn__line:nth-child(2) {
+                opacity: 0;
+            }
+
+            .mobile-menu-btn.active .mobile-menu-btn__line:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+
+            .mobile-menu {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                z-index: 1000;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .mobile-menu.active {
+                display: block;
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .mobile-menu__overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                backdrop-filter: blur(10px);
+            }
+
+            .mobile-menu__content {
+                position: relative;
+                background: linear-gradient(145deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+                width: 320px;
+                height: 100vh;
+                margin-left: auto;
+                padding: 25px 20px;
+                border-left: 1px solid rgba(120, 60, 180, 0.3);
+                box-shadow: -20px 0 60px rgba(0, 0, 0, 0.8), inset 1px 0 0 rgba(255, 255, 255, 0.1);
+                transform: translateX(100%);
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                overflow-y: auto;
+            }
+
+            .mobile-menu__content::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: 
+                    radial-gradient(circle at 20% 30%, rgba(120, 60, 180, 0.15) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 70%, rgba(185, 18, 231, 0.1) 0%, transparent 50%);
+                pointer-events: none;
+            }
+
+            .mobile-menu.active .mobile-menu__content {
+                transform: translateX(0);
+            }
+
+            .mobile-menu__header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 35px;
+                padding-bottom: 20px;
+                border-bottom: 1px solid rgba(120, 60, 180, 0.2);
+                position: relative;
+            }
+
+            .mobile-menu__header::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                width: 80px;
+                height: 1px;
+                background: linear-gradient(90deg, transparent, rgba(120, 60, 180, 0.6), transparent);
+                transform: translateX(-50%);
+            }
+
+            .mobile-menu__header .logo {
+                transform: scale(0.85);
+                transition: all 0.3s ease;
+            }
+
+            .mobile-menu__header .logo:hover {
+                transform: scale(0.9);
+                filter: drop-shadow(0 0 20px rgba(120, 60, 180, 0.4));
+            }
+
+            .mobile-menu__close {
+                width: 35px;
+                height: 35px;
+                background: transparent;
+                border: none;
+                cursor: pointer;
+                position: relative;
+                padding: 0;
+            }
+
+            .mobile-menu__close-line {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 20px;
+                height: 2px;
+                background: #fff;
+                border-radius: 1px;
+                transition: all 0.3s ease;
+            }
+
+            .mobile-menu__close-line:nth-child(1) {
+                transform: translate(-50%, -50%) rotate(45deg);
+            }
+
+            .mobile-menu__close-line:nth-child(2) {
+                transform: translate(-50%, -50%) rotate(-45deg);
+            }
+
+            .mobile-menu__close:hover .mobile-menu__close-line {
+                background: rgba(120, 60, 180, 1);
+            }
+
+            .mobile-menu__nav {
+                flex-grow: 1;
+            }
+
+            .mobile-menu__list {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            .mobile-menu__item {
+                margin-bottom: 8px;
+            }
+
+            .mobile-menu__link {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                color: #fff;
+                text-decoration: none;
+                font-size: 1.6rem;
+                font-weight: 500;
+                padding: 18px 20px;
+                margin: 0 -10px;
+                border-radius: 16px;
+                background: rgba(255, 255, 255, 0.02);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                position: relative;
+                overflow: hidden;
+                backdrop-filter: blur(10px);
+            }
+
+            .mobile-menu__link::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(135deg, rgba(120, 60, 180, 0.1), rgba(185, 18, 231, 0.05));
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            .mobile-menu__link:hover {
+                background: rgba(120, 60, 180, 0.15);
+                border-color: rgba(120, 60, 180, 0.4);
+                transform: translateX(8px) scale(1.02);
+                box-shadow: 0 8px 25px rgba(120, 60, 180, 0.2);
+            }
+
+            .mobile-menu__link:hover::before {
+                opacity: 1;
+            }
+
+            .mobile-menu__icon {
+                font-size: 1.4rem;
+                width: 28px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+            }
+
+            .mobile-menu__text {
+                flex-grow: 1;
+                margin-left: 15px;
+                font-weight: 500;
+                letter-spacing: 0.3px;
+            }
+
+            .mobile-menu__arrow {
+                font-size: 1.2rem;
+                opacity: 0.7;
+                transition: all 0.3s ease;
+                transform: translateX(-5px);
+            }
+
+            .mobile-menu__link:hover .mobile-menu__arrow {
+                opacity: 1;
+                transform: translateX(0);
+                color: rgba(120, 60, 180, 1);
+            }
+
+            .mobile-menu__link:hover .mobile-menu__icon {
+                transform: scale(1.1);
+                filter: brightness(1.2);
+            }
+
+            .mobile-menu__cta {
+                margin-top: 30px;
+                padding-top: 25px;
+                border-top: 1px solid rgba(120, 60, 180, 0.2);
+                position: relative;
+            }
+
+            .mobile-menu__cta::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 50%;
+                width: 60px;
+                height: 1px;
+                background: linear-gradient(90deg, transparent, rgba(120, 60, 180, 0.5), transparent);
+                transform: translateX(-50%);
+            }
+
+            .mobile-menu__contact-btn {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                background: linear-gradient(135deg, rgba(120, 60, 180, 0.8), rgba(185, 18, 231, 0.7));
+                border: 1px solid rgba(120, 60, 180, 0.6);
+                border-radius: 20px;
+                padding: 20px 25px;
+                color: #fff;
+                font-family: 'Sora', sans-serif;
+                font-weight: 600;
+                font-size: 1.6rem;
+                cursor: pointer;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                position: relative;
+                overflow: hidden;
+                backdrop-filter: blur(20px);
+                box-shadow: 
+                    0 8px 32px rgba(120, 60, 180, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            }
+
+            .mobile-menu__contact-btn::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+                transition: left 0.6s ease;
+            }
+
+            .mobile-menu__contact-btn:hover {
+                background: linear-gradient(135deg, rgba(120, 60, 180, 0.9), rgba(185, 18, 231, 0.8));
+                border-color: rgba(120, 60, 180, 0.8);
+                transform: translateY(-3px) scale(1.02);
+                box-shadow: 
+                    0 15px 40px rgba(120, 60, 180, 0.4),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            }
+
+            .mobile-menu__contact-btn:hover::before {
+                left: 100%;
+            }
+
+            .mobile-menu__contact-icon {
+                font-size: 1.8rem;
+                flex-shrink: 0;
+                filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+            }
+
+            .mobile-menu__contact-text {
+                flex-grow: 1;
+                margin-left: 15px;
+                text-align: left;
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+            }
+
+            .mobile-menu__contact-title {
+                font-size: 1.6rem;
+                font-weight: 600;
+                line-height: 1.2;
+            }
+
+            .mobile-menu__contact-subtitle {
+                font-size: 1.2rem;
+                font-weight: 400;
+                opacity: 0.9;
+                color: rgba(255, 255, 255, 0.8);
+            }
+
+            .mobile-menu__contact-arrow {
+                font-size: 1.4rem;
+                flex-shrink: 0;
+                transition: all 0.3s ease;
+                transform: translateX(-3px);
+            }
+
+            .mobile-menu__contact-btn:hover .mobile-menu__contact-arrow {
+                transform: translateX(3px) scale(1.1);
+            }
+
+            .mobile-menu__contact-btn:hover .mobile-menu__contact-icon {
+                transform: scale(1.1) rotate(10deg);
+            }
+
+            /* Staggered animation keyframes */
+            @keyframes slideInRight {
+                0% {
+                    opacity: 0;
+                    transform: translateX(30px);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+
+            /* Reset styles for menu items */
+            .mobile-menu__item,
+            .mobile-menu__contact-btn {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            /* Hide desktop nav and show mobile menu on mobile */
+            @media (max-width: 1024px) {
+                .navbar {
+                    display: none;
+                }
+                
+                .header-action {
+                    display: none;
+                }
+                
+                .mobile-menu-btn {
+                    display: flex;
+                }
+            }
+
+
         </style>
     </head>
     <body>
@@ -478,6 +1357,13 @@
                                 </ul>
                             </nav>
 
+                            <!-- Mobile Menu Button -->
+                            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                                <span class="mobile-menu-btn__line"></span>
+                                <span class="mobile-menu-btn__line"></span>
+                                <span class="mobile-menu-btn__line"></span>
+                            </button>
+
                             <!-- Action -->
                             <div class="header-action">
                                 <button class="btn header-action_contact" id="openModalHeader">
@@ -485,6 +1371,91 @@
                                 </button>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Overlay -->
+                <div class="mobile-menu" id="mobileMenu">
+                    <div class="mobile-menu__overlay"></div>
+                    <div class="mobile-menu__content">
+                        <div class="mobile-menu__header">
+                            <div class="logo">
+                                <img src="./assets/img/logo/logo_transparent.png" alt="Deltora Labs" class="logo__img" />
+                                <span class="logo__text">
+                                    <span class="logo__brand">Deltora</span>
+                                    <span class="logo__brand logo__brand--small">Labs</span>
+                                </span>
+                            </div>
+                            <button class="mobile-menu__close" id="mobileMenuClose">
+                                <span class="mobile-menu__close-line"></span>
+                                <span class="mobile-menu__close-line"></span>
+                            </button>
+                        </div>
+                        
+                        <nav class="mobile-menu__nav">
+                            <ul class="mobile-menu__list">
+                                <li class="mobile-menu__item">
+                                    <a href="#home" class="mobile-menu__link">
+                                        <span class="mobile-menu__icon">🏠</span>
+                                        <span class="mobile-menu__text">Home</span>
+                                        <span class="mobile-menu__arrow">→</span>
+                                    </a>
+                                </li>
+                                <li class="mobile-menu__item">
+                                    <a href="#about" class="mobile-menu__link">
+                                        <span class="mobile-menu__icon">ℹ️</span>
+                                        <span class="mobile-menu__text">About</span>
+                                        <span class="mobile-menu__arrow">→</span>
+                                    </a>
+                                </li>
+                                <li class="mobile-menu__item">
+                                    <a href="#services" class="mobile-menu__link">
+                                        <span class="mobile-menu__icon">⚡</span>
+                                        <span class="mobile-menu__text">Services</span>
+                                        <span class="mobile-menu__arrow">→</span>
+                                    </a>
+                                </li>
+                                <li class="mobile-menu__item">
+                                    <a href="#portfolio" class="mobile-menu__link">
+                                        <span class="mobile-menu__icon">💼</span>
+                                        <span class="mobile-menu__text">Portfolio</span>
+                                        <span class="mobile-menu__arrow">→</span>
+                                    </a>
+                                </li>
+                                <li class="mobile-menu__item">
+                                    <a href="#partner" class="mobile-menu__link">
+                                        <span class="mobile-menu__icon">🤝</span>
+                                        <span class="mobile-menu__text">Partner</span>
+                                        <span class="mobile-menu__arrow">→</span>
+                                    </a>
+                                </li>
+                                <li class="mobile-menu__item">
+                                    <a href="#team" class="mobile-menu__link">
+                                        <span class="mobile-menu__icon">👥</span>
+                                        <span class="mobile-menu__text">Our Team</span>
+                                        <span class="mobile-menu__arrow">→</span>
+                                    </a>
+                                </li>
+                                <li class="mobile-menu__item">
+                                    <a href="./assets/pitchdesk/PitchDesk Molecule Labs .pdf" target="_blank" rel="noopener" class="mobile-menu__link">
+                                        <span class="mobile-menu__icon">📄</span>
+                                        <span class="mobile-menu__text">Pitchdesk</span>
+                                        <span class="mobile-menu__arrow">↗</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            
+                            <div class="mobile-menu__cta">
+                                <button class="mobile-menu__contact-btn" id="openModalMobile">
+                                    <span class="mobile-menu__contact-icon">💬</span>
+                                    <span class="mobile-menu__contact-text">
+                                        <span class="mobile-menu__contact-title">Contact Us</span>
+                                        <span class="mobile-menu__contact-subtitle">Get Started Today</span>
+                                    </span>
+                                    <span class="mobile-menu__contact-arrow">→</span>
+                                </button>
+                            </div>
+                        </nav>
                     </div>
                 </div>
 
@@ -505,18 +1476,79 @@
 
                     <!-- Hero media -->
                     <div class="hero__media">
-                        <figure class="hero__images">
-                            <img
-                                src="./assets/img/hero-01.jpg"
-                                alt=""
-                                class="hero__img"
-                            />
-                            <img
-                                src="./assets/img/hero-02.jpg"
-                                alt=""
-                                class="hero__img"
-                            />
-                        </figure>
+                        <div class="ecosystem-orbit">
+                            <!-- Bitcoin center -->
+                            <div class="ecosystem-center">
+                                <img src="./assets/img/ecosystem/bitcoin.jpg" alt="Bitcoin" class="bitcoin-icon" />
+                            </div>
+
+                            <!-- Orbiting ecosystems -->
+                            <div class="orbit orbit-1">
+                                <div class="ecosystem-item" style="--delay: 0s">
+                                    <img src="./assets/img/ecosystem/eth.jpg" alt="Ethereum" class="ecosystem-icon" />
+                                </div>
+                            </div>
+                            
+                            <div class="orbit orbit-2">
+                                <div class="ecosystem-item" style="--delay: -2s">
+                                    <img src="./assets/img/ecosystem/solana.jpg" alt="Solana" class="ecosystem-icon" />
+                                </div>
+                            </div>
+                            
+                            <div class="orbit orbit-3">
+                                <div class="ecosystem-item" style="--delay: -4s">
+                                    <img src="./assets/img/ecosystem/bnb.jpg" alt="BNB Chain" class="ecosystem-icon" />
+                                </div>
+                            </div>
+                            
+                            <div class="orbit orbit-4">
+                                <div class="ecosystem-item" style="--delay: -6s">
+                                    <img src="./assets/img/ecosystem/polygon.jpg" alt="Polygon" class="ecosystem-icon" />
+                                </div>
+                            </div>
+                            
+                            <div class="orbit orbit-5">
+                                <div class="ecosystem-item" style="--delay: -8s">
+                                    <img src="./assets/img/ecosystem/Doge.png" alt="Avalanche" class="ecosystem-icon" />
+                                </div>
+                            </div>
+                            
+                            <div class="orbit orbit-6">
+                                <div class="ecosystem-item" style="--delay: -10s">
+                                    <img src="./assets/img/ecosystem/tron.jpg" alt="Tron" class="ecosystem-icon" />
+                                </div>
+                            </div>
+                            
+                            <div class="orbit orbit-7">
+                                <div class="ecosystem-item" style="--delay: -12s">
+                                    <img src="./assets/img/ecosystem/Ondo Finance.jpg" alt="Ondo Finance" class="ecosystem-icon" />
+                                </div>
+                            </div>
+                            
+                            <div class="orbit orbit-8">
+                                <div class="ecosystem-item" style="--delay: -14s">
+                                    <img src="./assets/img/ecosystem/Sui.jpg" alt="Sui" class="ecosystem-icon" />
+                                </div>
+                            </div>
+                            
+                            <div class="orbit orbit-9">
+                                <div class="ecosystem-item" style="--delay: -16s">
+                                    <img src="./assets/img/ecosystem/Aptos.jpg" alt="Aptos" class="ecosystem-icon" />
+                                </div>
+                            </div>
+                            
+                            <div class="orbit orbit-10">
+                                <div class="ecosystem-item" style="--delay: -18s">
+                                    <img src="./assets/img/ecosystem/XRP.jpg" alt="XRP" class="ecosystem-icon" />
+                                </div>
+                            </div>
+                            
+                            <div class="orbit orbit-11">
+                                <div class="ecosystem-item" style="--delay: -20s">
+                                    <img src="./assets/img/ecosystem/chainlink.jpg" alt="ChainLink" class="ecosystem-icon" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </section>
             </div>
@@ -1227,11 +2259,6 @@
                                     <path d="M16 1.42062C15.405 1.66154 14.771 1.82123 14.11 1.89877C14.79 1.524 15.309 0.935077 15.553 0.225231C14.919 0.574154 14.219 0.820615 13.473 0.958154C12.871 0.366462 12.013 0 11.077 0C9.261 0 7.799 1.36062 7.799 3.02862C7.799 3.26862 7.821 3.49938 7.875 3.71908C5.148 3.59631 2.735 2.38985 1.114 0.552C0.831 1.00523 0.665 1.524 0.665 2.08246C0.665 3.13108 1.25 4.06062 2.122 4.59877C1.595 4.58954 1.078 4.44831 0.64 4.22585C0.64 4.23508 0.64 4.24708 0.64 4.25908C0.64 5.73046 1.777 6.95262 3.268 7.23415C3.001 7.30154 2.71 7.33385 2.408 7.33385C2.198 7.33385 1.986 7.32277 1.787 7.28215C2.212 8.48123 3.418 9.36277 4.852 9.39138C3.736 10.1972 2.319 10.6828 0.785 10.6828C0.516 10.6828 0.258 10.6717 0 10.6412C1.453 11.5062 3.175 12 5.032 12C11.068 12 14.368 7.38462 14.368 3.384C14.368 3.25015 14.363 3.12092 14.356 2.99262C15.007 2.56615 15.554 2.03354 16 1.42062Z" fill="currentColor"/>
                                 </svg>
                             </a>
-                            <a href="https://t.me/DeltoraLabs" target="_blank" class="footer__social-btn" title="Telegram">
-                                <svg width="16" height="14" viewBox="0 0 16 14" fill="none">
-                                    <path d="M16 1.83L13.33 11.5c-.2.8-.72 1-1.46.62L8.33 9.5 6.5 11.25c-.18.18-.33.33-.67.33l.23-3.33L14.67 2.5c.27-.23-.06-.36-.42-.13L4.33 8.17l-3.25-1c-.7-.22-.72-.7.15-1.04L14.83.17c.58-.22 1.08.14.9.88z" fill="currentColor"/>
-                                </svg>
-                            </a>
                             <a href="https://linkedin.com/company/deltora-labs" target="_blank" class="footer__social-btn" title="LinkedIn">
                                 <svg width="13" height="12" viewBox="0 0 13 12" fill="none">
                                     <path d="M0 1.39394C0 0.989891 0.146401 0.656558 0.439189 0.393939C0.731978 0.131309 1.11262 0 1.58108 0C2.04119 0 2.41344 0.129285 2.69788 0.387879C2.99066 0.654545 3.13707 1.00201 3.13707 1.4303C3.13707 1.81818 2.99486 2.14141 2.71042 2.4C2.41764 2.66667 2.03282 2.8 1.55598 2.8H1.54344C1.08333 2.8 0.711072 2.66667 0.426641 2.4C0.142209 2.13333 0 1.79798 0 1.39394ZM0.163127 12V3.90303H2.94884V12H0.163127ZM4.49228 12H7.27799V7.47879C7.27799 7.19595 7.31146 6.97777 7.37838 6.82424C7.49549 6.54949 7.67326 6.31716 7.91168 6.12727C8.1501 5.93737 8.44916 5.84242 8.80888 5.84242C9.74582 5.84242 10.2143 6.45252 10.2143 7.67273V12H13V7.35758C13 6.16161 12.7072 5.25455 12.1216 4.63636C11.536 4.01818 10.7622 3.70909 9.80019 3.70909C8.72104 3.70909 7.88031 4.15758 7.27799 5.05455V5.07879H7.26544L7.27799 5.05455V3.90303H4.49228C4.509 4.16161 4.51737 4.96565 4.51737 6.31515C4.51737 7.66464 4.509 9.55959 4.49228 12Z" fill="currentColor"/>
@@ -1685,6 +2712,128 @@
             });
 
             // Partner slider removed - now using static grid layout
+
+            // Mobile Menu JavaScript
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuClose = document.getElementById('mobileMenuClose');
+            const mobileMenuOverlay = document.querySelector('.mobile-menu__overlay');
+            const mobileMenuLinks = document.querySelectorAll('.mobile-menu__link');
+            const openModalMobile = document.getElementById('openModalMobile');
+
+            // Toggle mobile menu
+            function toggleMobileMenu() {
+                mobileMenuBtn.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+                
+                // Staggered animation for menu items
+                if (mobileMenu.classList.contains('active')) {
+                    const menuItems = document.querySelectorAll('.mobile-menu__item');
+                    menuItems.forEach((item, index) => {
+                        item.style.animation = `slideInRight 0.4s ease forwards ${index * 0.1}s`;
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateX(30px)';
+                    });
+                    
+                    // Animate contact button
+                    const contactBtn = document.querySelector('.mobile-menu__contact-btn');
+                    if (contactBtn) {
+                        contactBtn.style.animation = `slideInRight 0.4s ease forwards ${menuItems.length * 0.1 + 0.2}s`;
+                        contactBtn.style.opacity = '0';
+                        contactBtn.style.transform = 'translateX(30px)';
+                    }
+                }
+            }
+
+            // Close mobile menu
+            function closeMobileMenu() {
+                mobileMenuBtn.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+
+            // Event listeners
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+            mobileMenuClose.addEventListener('click', closeMobileMenu);
+            mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+
+            // Close menu when clicking on a link
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    setTimeout(closeMobileMenu, 300); // Small delay for smooth transition
+                });
+            });
+
+            // Connect mobile contact button to modal
+            if (openModalMobile) {
+                openModalMobile.addEventListener('click', () => {
+                    closeMobileMenu();
+                    setTimeout(() => {
+                        modal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }, 300);
+                });
+            }
+
+            // Close mobile menu on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                    closeMobileMenu();
+                }
+            });
+
+            // Close mobile menu on window resize (if screen becomes desktop size)
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 1024 && mobileMenu.classList.contains('active')) {
+                    closeMobileMenu();
+                }
+            });
+
+            // Header hide/show on scroll
+            let lastScrollTop = 0;
+            let scrollThreshold = 10; // Minimum scroll distance to trigger hide/show
+            let isScrolling = false;
+            
+            function handleScroll() {
+                if (!isScrolling) {
+                    window.requestAnimationFrame(() => {
+                        const headerTop = document.querySelector('.header-top');
+                        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                        
+                        // Only trigger if scroll distance is significant
+                        if (Math.abs(currentScroll - lastScrollTop) > scrollThreshold) {
+                            if (currentScroll > lastScrollTop && currentScroll > 100) {
+                                // Scrolling down & past threshold - hide header
+                                headerTop.classList.add('header-hidden');
+                            } else if (currentScroll < lastScrollTop) {
+                                // Scrolling up - show header
+                                headerTop.classList.remove('header-hidden');
+                            }
+                            
+                            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+                        }
+                        
+                        isScrolling = false;
+                    });
+                }
+                isScrolling = true;
+            }
+            
+            // Debounced scroll listener
+            let scrollTimeout;
+            window.addEventListener('scroll', () => {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(handleScroll, 10);
+            }, { passive: true });
+
+            // Always show header when at top of page
+            window.addEventListener('scroll', () => {
+                const headerTop = document.querySelector('.header-top');
+                if (window.pageYOffset <= 50) {
+                    headerTop.classList.remove('header-hidden');
+                }
+            }, { passive: true });
         </script>
     </body>
 </html>
