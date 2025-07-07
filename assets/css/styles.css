@@ -449,12 +449,22 @@ button {
         margin-left: auto;
         margin-right: auto;
     }
+    
+    .hero__row {
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .hero__row .btn {
+        margin: 0 auto;
+    }
 }
 
 @media (max-width: 768px) {
     .hero {
         padding: 30px 0;
         gap: 30px;
+        text-align: center;
     }
     
     .hero__heading {
@@ -469,6 +479,12 @@ button {
     
     .hero__row {
         margin-top: 25px;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .hero__row .btn {
+        margin: 0 auto;
     }
 }
 
@@ -476,6 +492,7 @@ button {
     .hero {
         padding: 20px 0;
         gap: 25px;
+        text-align: center;
     }
     
     .hero__heading {
@@ -490,6 +507,12 @@ button {
     
     .hero__row {
         margin-top: 20px;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .hero__row .btn {
+        margin: 0 auto;
     }
 }
 
@@ -512,7 +535,7 @@ button {
 .hero__row {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     margin-top: 30px;
 }
 
@@ -2024,6 +2047,7 @@ button {
     display: flex;
     gap: 16px;
     margin-top: 32px;
+    justify-content: flex-start;
 }
 
 .footer__social-btn {
@@ -2121,7 +2145,7 @@ button {
     }
     
     .footer__social {
-        justify-content: center;
+        justify-content: flex-start;
     }
     
     .footer-form {
@@ -2160,7 +2184,7 @@ button {
     
     .footer__social {
         gap: 12px;
-        justify-content: center;
+        justify-content: flex-start;
     }
     
     .footer__social-btn {
