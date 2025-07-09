@@ -1587,14 +1587,13 @@ button {
 
 .member-item__thumb {
     display: block;
-    width: 60%;
+    width: 100%;
     height: 240px;
     object-fit: cover;
     border-radius: 12px;
     transition: all 0.4s ease;
     position: relative;
     z-index: 2;
-    margin: 0 auto;
 }
 
 .member-item:hover .member-item__thumb {
@@ -1741,6 +1740,8 @@ button {
     }
     
     .member-item__thumb {
+        width: 60%;
+        margin: 0 auto;
         height: 200px;
     }
     
