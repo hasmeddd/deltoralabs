@@ -14,7 +14,7 @@ html {
 
 body {
     font-size: 1.6rem;
-    font-family: "Sora", sans-serif;
+    font-family: "Satoshi", "Satoshi Placeholder", sans-serif;
     padding-top: 70px; /* Compensate for fixed header */
     background: radial-gradient(ellipse at center, #000010 0%, #000 100%);
     color: #ffffff;
@@ -312,7 +312,7 @@ button {
 
 .logo__brand {
     font-size: 1.6em;
-    font-family: "Sora", sans-serif;
+    font-family: "Satoshi", "Satoshi Placeholder", sans-serif;
     font-weight: 600;
     display: block;
     color: #e0e0e0;
